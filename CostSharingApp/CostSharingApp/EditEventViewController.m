@@ -60,8 +60,8 @@
 
 - (IBAction)savePressed:(id)sender {
     NSString *newName = [NSString stringWithString:self.name.text];
-    NSMutableArray *newPeople = [[NSMutableArray alloc] init];
-    
+    NSString *trimPeople = [self.people.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSArray *newPeople = [trimPeople componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     [_parent finishedEditing:newName people:newPeople];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

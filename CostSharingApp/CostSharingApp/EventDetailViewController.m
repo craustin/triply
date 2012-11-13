@@ -60,6 +60,7 @@
 -(void)finishedEditing:(NSString *)name people:(NSArray *)people
 {
     _currentEvent.name = name;
+    _currentEvent.people = people;
     self.title = name;
     [_parent.tableView reloadData];
 }

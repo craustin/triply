@@ -48,6 +48,11 @@
         [self.navBar setTitle:@"New Event"];
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField*)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

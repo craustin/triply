@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EventList.h"
 
-@protocol EventEditable <NSObject>
+@protocol EventEditable <NSObject, UITextFieldDelegate>
 
 -(void)finishedEditing:(NSString *)name people:(NSArray *)people;
 

@@ -49,6 +49,11 @@
     self.currentCost.value = [NSNumber numberWithFloat:self.valueField.text.floatValue];
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField*)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -71,7 +76,6 @@
     if (![self.currentEvent.costs containsObject:self.currentCost])
         [self.currentEvent.costs addObject:self.currentCost];
     
-    //[self.currentParent.tableView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -121,11 +121,17 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XXm-9J-sHe">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="538-1H-qpp" id="Y4v-sl-3x2"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Value" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xol-AR-feQ">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="538-1H-qpp" id="pvd-ZS-zPQ"/>
+                                </connections>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="koN-Ua-VkH">
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -136,7 +142,10 @@
                                     <constraint firstAttribute="width" constant="280" id="dA5-cl-M5M"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="538-1H-qpp" id="iDD-ng-uuK"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -191,7 +200,10 @@
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Event Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dr1-yG-r2r">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="4x5-33-sdH" id="jbJ-Cc-MlZ"/>
+                                </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YE9-rp-abh">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -228,16 +240,16 @@ Jillian</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Dr1-yG-r2r" firstAttribute="top" secondItem="7Ee-SG-Lcj" secondAttribute="top" constant="58" id="0vv-2k-bkW"/>
                             <constraint firstItem="snY-Wl-Hyy" firstAttribute="leading" secondItem="YE9-rp-abh" secondAttribute="leading" type="default" id="4B5-zO-YQB"/>
                             <constraint firstItem="Dr1-yG-r2r" firstAttribute="leading" secondItem="7Ee-SG-Lcj" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="EyA-hp-NsX"/>
                             <constraint firstItem="jLx-hu-xbN" firstAttribute="leading" secondItem="7Ee-SG-Lcj" secondAttribute="leading" type="default" id="GoU-gg-rm1"/>
                             <constraint firstItem="YE9-rp-abh" firstAttribute="top" secondItem="7Ee-SG-Lcj" secondAttribute="top" constant="125" id="Hen-dm-9il"/>
                             <constraint firstItem="jLx-hu-xbN" firstAttribute="trailing" secondItem="7Ee-SG-Lcj" secondAttribute="trailing" type="default" id="Lea-sd-HAc"/>
                             <constraint firstItem="snY-Wl-Hyy" firstAttribute="leading" secondItem="7Ee-SG-Lcj" secondAttribute="leading" constant="21" id="TQ7-LL-dlA"/>
-                            <constraint firstItem="snY-Wl-Hyy" firstAttribute="top" secondItem="7Ee-SG-Lcj" secondAttribute="top" constant="98" id="e1a-QX-MQj"/>
+                            <constraint firstItem="Dr1-yG-r2r" firstAttribute="top" secondItem="7Ee-SG-Lcj" secondAttribute="top" constant="60" id="j2n-Kg-Fb9"/>
                             <constraint firstItem="jLx-hu-xbN" firstAttribute="top" secondItem="7Ee-SG-Lcj" secondAttribute="top" type="default" id="rLy-nL-3eS"/>
                             <constraint firstAttribute="trailing" secondItem="Dr1-yG-r2r" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="y8S-ZB-C3V"/>
+                            <constraint firstItem="snY-Wl-Hyy" firstAttribute="top" secondItem="Dr1-yG-r2r" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="zyc-aY-py0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="OLX-xq-xbg"/>
@@ -277,11 +289,17 @@ Jillian</string>
                             </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WiQ-Tl-NGs">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Nv6-br-UHs" id="iG3-Dh-rjp"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Value" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9lm-be-jXx">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Nv6-br-UHs" id="oZR-mu-7j3"/>
+                                </connections>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="PMH-V9-B5o">
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -292,7 +310,10 @@ Jillian</string>
                             </tableView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Paid By" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LXd-zz-oVF">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Nv6-br-UHs" id="H36-rl-5Ei"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -347,6 +368,48 @@ Jillian</string>
             <point key="canvasLocation" x="485" y="73"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="CostDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CostDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelPressed:"/>
+                <relationship kind="action" name="deletePressed:"/>
+                <relationship kind="action" name="savePressed:"/>
+                <relationship kind="outlet" name="paidByField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="titleField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="valueField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="EditEventViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditEventViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelPressed:"/>
+                <relationship kind="action" name="savePressed:"/>
+                <relationship kind="outlet" name="name" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="people" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="EventDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="EventListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventListViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ResultsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ResultsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

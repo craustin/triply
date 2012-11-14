@@ -17,4 +17,9 @@
 @property (nonatomic) NSArray *people;
 @property (nonatomic) NSMutableArray *costs;
 
+// results
+-(void)refreshResults;
+-(float)getOwedForPerson:(NSString *)person;
+@property (nonatomic, readonly) NSString *clearThroughPerson;
+
 @end

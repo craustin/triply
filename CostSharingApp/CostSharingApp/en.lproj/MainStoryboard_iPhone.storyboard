@@ -53,6 +53,12 @@
                     </view>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="9A9-D0-dv4"/>
+                        <barButtonItem title="View Results" id="rgr-Sy-wc8">
+                            <connections>
+                                <segue destination="vy4-0r-QYR" kind="push" identifier="segueViewResults" id="J5V-4X-I97"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Q57-MS-jpV"/>
                         <barButtonItem systemItem="add" id="FsD-0G-AJf">
                             <connections>
                                 <segue destination="Nv6-br-UHs" kind="modal" identifier="segueNewCost" id="tom-g1-tdN"/>
@@ -75,6 +81,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="msk-5d-GUp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1448" y="73"/>
+        </scene>
+        <!--Results View Controller - Results-->
+        <scene sceneID="Ig3-BE-A8a">
+            <objects>
+                <viewController id="vy4-0r-QYR" customClass="ResultsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fDv-uz-cHu">
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="el1-DK-Cmo">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="el1-DK-Cmo" firstAttribute="bottom" secondItem="fDv-uz-cHu" secondAttribute="bottom" type="default" id="Jio-VL-sWO"/>
+                            <constraint firstItem="el1-DK-Cmo" firstAttribute="top" secondItem="fDv-uz-cHu" secondAttribute="top" type="default" id="XLH-ne-RJx"/>
+                            <constraint firstItem="el1-DK-Cmo" firstAttribute="leading" secondItem="fDv-uz-cHu" secondAttribute="leading" type="default" id="iBm-iC-OAf"/>
+                            <constraint firstItem="el1-DK-Cmo" firstAttribute="trailing" secondItem="fDv-uz-cHu" secondAttribute="trailing" type="default" id="rSE-KU-sIz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Results" id="li5-uA-vIE"/>
+                    <connections>
+                        <outlet property="tableView" destination="el1-DK-Cmo" id="jVR-YG-VfP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h8C-Ia-h0v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1948" y="-622"/>
         </scene>
         <!--Cost Detail View Controller - Cost-->
         <scene sceneID="NQg-xU-ZnA">
@@ -294,41 +329,6 @@ Jillian</string>
             <point key="canvasLocation" x="485" y="73"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="CostDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CostDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelPressed:"/>
-                <relationship kind="action" name="deletePressed:"/>
-                <relationship kind="action" name="savePressed:"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="titleField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="valueField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="EditEventViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditEventViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelPressed:"/>
-                <relationship kind="action" name="savePressed:"/>
-                <relationship kind="outlet" name="name" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
-                <relationship kind="outlet" name="people" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="EventDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="EventListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventListViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

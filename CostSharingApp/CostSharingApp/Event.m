@@ -19,4 +19,18 @@
     return self;
 }
 
+-(void)refreshResults
+{
+}
+
+-(float)getOwedForPerson:(NSString *)person
+{
+    return 500.0;
+}
+
+-(NSString *)clearThroughPerson
+{
+    return @"Nobody Yet";
+}
+
 @end

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		390EDAC3165285DC0008B7BC /* CostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 390EDAC2165285DC0008B7BC /* CostDetailViewController.m */; };
 		390EDAC616528BB60008B7BC /* Cost.m in Sources */ = {isa = PBXBuildFile; fileRef = 390EDAC516528BB60008B7BC /* Cost.m */; };
+		3940177016532730009324CC /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3940176F16532730009324CC /* ResultsViewController.m */; };
 		3964E7D4165068D9005BFF45 /* EditEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3964E7D3165068D9005BFF45 /* EditEventViewController.m */; };
 		3964E7DB16507533005BFF45 /* EventList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3964E7DA16507533005BFF45 /* EventList.m */; };
 		3964E7DD16507E6D005BFF45 /* EventListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3964E7DC16507E6D005BFF45 /* EventListViewController.m */; };
@@ -31,6 +32,8 @@
 		390EDAC2165285DC0008B7BC /* CostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostDetailViewController.m; sourceTree = "<group>"; };
 		390EDAC416528BB60008B7BC /* Cost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cost.h; sourceTree = "<group>"; };
 		390EDAC516528BB60008B7BC /* Cost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cost.m; sourceTree = "<group>"; };
+		3940176E16532730009324CC /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
+		3940176F16532730009324CC /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
 		3964E7D2165068D9005BFF45 /* EditEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditEventViewController.h; sourceTree = "<group>"; };
 		3964E7D3165068D9005BFF45 /* EditEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditEventViewController.m; sourceTree = "<group>"; };
 		3964E7D916507533005BFF45 /* EventList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventList.h; sourceTree = "<group>"; };
@@ -123,6 +126,8 @@
 				3964E7E216507EA7005BFF45 /* EventDetailViewController.m */,
 				390EDAC1165285DC0008B7BC /* CostDetailViewController.h */,
 				390EDAC2165285DC0008B7BC /* CostDetailViewController.m */,
+				3940176E16532730009324CC /* ResultsViewController.h */,
+				3940176F16532730009324CC /* ResultsViewController.m */,
 				39FC7D96164E2C3200D194A1 /* MainStoryboard_iPhone.storyboard */,
 				39FC7D85164E2C3200D194A1 /* Supporting Files */,
 			);
@@ -220,6 +225,7 @@
 				3964E7E61651B0DF005BFF45 /* Event.m in Sources */,
 				390EDAC3165285DC0008B7BC /* CostDetailViewController.m in Sources */,
 				390EDAC616528BB60008B7BC /* Cost.m in Sources */,
+				3940177016532730009324CC /* ResultsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

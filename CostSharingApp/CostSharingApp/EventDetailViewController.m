@@ -10,6 +10,7 @@
 #import "EditEventViewController.h"
 #import "EventListViewController.h"
 #import "CostDetailViewController.h"
+#import "ResultsViewController.h"
 
 @interface EventDetailViewController () {
     Event *_currentEvent;
@@ -104,6 +105,11 @@
         cdvc.currentCost = [[Cost alloc] init];
         cdvc.currentEvent = _currentEvent;
         cdvc.currentParent = self;
+    }
+    else if ([segue.identifier isEqualToString:@"segueViewResults"])
+    {
+        ResultsViewController *rvc = [segue destinationViewController];
+        rvc.currentEvent = _currentEvent;
     }
 }
 

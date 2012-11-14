@@ -11,7 +11,9 @@
 #import "EditEventViewController.h"
 #import "EventListViewController.h"
 
-@interface EventDetailViewController : UIViewController <EventEditable>
+@interface EventDetailViewController : UIViewController <EventEditable, UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 -(void)setCurrentEvent:(Event *)event parent:(EventListViewController *)parent;
 

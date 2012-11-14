@@ -15,5 +15,6 @@
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *lastUpdated;
 @property (nonatomic) NSArray *people;
+@property (nonatomic) NSMutableArray *costs;
 
 @end

@@ -23,7 +23,13 @@
 {
     [super viewDidLoad];
     
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     eventList = [[EventList alloc] init];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,7 +90,6 @@
 {
     // TODO: use today's date (and update lastUpdated where appropriate)
     [eventList addEvent:name lastUpdated:@"November 11th, 2012" people:people];
-    [self.tableView reloadData];
 }
 
 @end

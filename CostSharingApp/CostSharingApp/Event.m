@@ -15,6 +15,7 @@
     self.name = name;
     self.lastUpdated = lastUpdated;
     self.people = people;
+    self.costs = [[NSMutableArray alloc] init];
     return self;
 }
 

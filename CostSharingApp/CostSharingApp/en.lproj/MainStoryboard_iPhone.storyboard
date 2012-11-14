@@ -9,17 +9,20 @@
             <objects>
                 <tableViewController id="gfg-aK-VL0" customClass="EventListViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Jd7-OA-fg4">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Events" id="fwW-G1-Vug">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="joB-8e-9O3">
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="pqm-Rt-2gT"/>
+                        <barButtonItem systemItem="add" id="joB-8e-9O3">
                             <connections>
                                 <segue destination="4x5-33-sdH" kind="modal" identifier="segueNewEvent" id="PZb-FJ-naL"/>
                             </connections>
                         </barButtonItem>
-                    </navigationItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Events" id="fwW-G1-Vug"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="05R-yv-vkO" kind="push" identifier="segueEventDetails" id="DhT-Ss-9Rz"/>
                     </connections>
@@ -33,10 +36,29 @@
             <objects>
                 <viewController id="05R-yv-vkO" customClass="EventDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ldd-cv-zjb">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="z9Y-44-Vi5">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="z9Y-44-Vi5" firstAttribute="bottom" secondItem="Ldd-cv-zjb" secondAttribute="bottom" type="default" id="0b1-9O-8WP"/>
+                            <constraint firstItem="z9Y-44-Vi5" firstAttribute="leading" secondItem="Ldd-cv-zjb" secondAttribute="leading" type="default" id="Eqn-y2-wYc"/>
+                            <constraint firstItem="z9Y-44-Vi5" firstAttribute="trailing" secondItem="Ldd-cv-zjb" secondAttribute="trailing" type="default" id="ICc-XL-KBU"/>
+                            <constraint firstItem="z9Y-44-Vi5" firstAttribute="top" secondItem="Ldd-cv-zjb" secondAttribute="top" type="default" id="xL5-kV-CcR"/>
+                        </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="9A9-D0-dv4"/>
+                        <barButtonItem systemItem="add" id="FsD-0G-AJf">
+                            <connections>
+                                <segue destination="Nv6-br-UHs" kind="modal" identifier="segueNewCost" id="tom-g1-tdN"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="[Event Name]" id="2Vs-fg-T5k">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="3RW-U7-jXl">
                             <connections>
@@ -44,10 +66,61 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="z9Y-44-Vi5" id="Tnx-HS-5A2"/>
+                        <segue destination="538-1H-qpp" kind="push" identifier="segueCostDetails" id="NPd-fN-Tja"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="msk-5d-GUp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1448" y="73"/>
+        </scene>
+        <!--Cost Detail View Controller - Cost-->
+        <scene sceneID="NQg-xU-ZnA">
+            <objects>
+                <viewController id="538-1H-qpp" customClass="CostDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sGb-Nx-B1S">
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XXm-9J-sHe">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Value" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xol-AR-feQ">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad" returnKeyType="done"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="koN-Ua-VkH">
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <sections/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XXm-9J-sHe" firstAttribute="top" secondItem="sGb-Nx-B1S" secondAttribute="top" constant="20" symbolic="YES" type="default" id="0I0-fW-hXh"/>
+                            <constraint firstAttribute="trailing" secondItem="XXm-9J-sHe" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="1iQ-dk-9sh"/>
+                            <constraint firstItem="Xol-AR-feQ" firstAttribute="top" secondItem="XXm-9J-sHe" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="3bh-py-KH8"/>
+                            <constraint firstItem="koN-Ua-VkH" firstAttribute="leading" secondItem="sGb-Nx-B1S" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="9Yu-uV-yhc"/>
+                            <constraint firstAttribute="trailing" secondItem="Xol-AR-feQ" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Bio-Pq-c38"/>
+                            <constraint firstItem="koN-Ua-VkH" firstAttribute="top" secondItem="Xol-AR-feQ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Wab-YC-avl"/>
+                            <constraint firstItem="XXm-9J-sHe" firstAttribute="leading" secondItem="sGb-Nx-B1S" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Zai-H2-rq8"/>
+                            <constraint firstAttribute="bottom" secondItem="koN-Ua-VkH" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="kmj-fE-kRS"/>
+                            <constraint firstAttribute="trailing" secondItem="koN-Ua-VkH" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="pg3-7H-nmu"/>
+                            <constraint firstItem="Xol-AR-feQ" firstAttribute="leading" secondItem="sGb-Nx-B1S" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="q7I-a8-wxy"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Cost" id="g2c-66-rii"/>
+                    <connections>
+                        <outlet property="tableView" destination="koN-Ua-VkH" id="YbU-ne-aWr"/>
+                        <outlet property="titleField" destination="XXm-9J-sHe" id="HBZ-jW-J7p"/>
+                        <outlet property="valueField" destination="Xol-AR-feQ" id="UJi-NZ-3GD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="81A-gK-2Cf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1948" y="73"/>
         </scene>
         <!--Edit Event View Controller - Title-->
         <scene sceneID="hxX-Ka-Qzm">
@@ -124,13 +197,85 @@ Jillian</string>
             </objects>
             <point key="canvasLocation" x="1448" y="793"/>
         </scene>
+        <!--Cost Detail View Controller-->
+        <scene sceneID="m0u-Ut-qJi">
+            <objects>
+                <viewController id="Nv6-br-UHs" customClass="CostDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ccz-kw-DAI">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fqR-Ap-YoJ">
+                                <items>
+                                    <navigationItem title="New Cost" id="B79-Fi-ofP">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vu1-pc-44n">
+                                            <connections>
+                                                <action selector="cancelPressed:" destination="Nv6-br-UHs" id="9h3-Vr-Fnc"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="llS-hd-u08">
+                                            <connections>
+                                                <action selector="savePressed:" destination="Nv6-br-UHs" id="MXo-7i-9c0"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WiQ-Tl-NGs">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Value" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9lm-be-jXx">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="PMH-V9-B5o">
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="388" id="FNN-a0-p6N"/>
+                                </constraints>
+                                <sections/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PMH-V9-B5o" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="7U5-kC-cum"/>
+                            <constraint firstAttribute="trailing" secondItem="WiQ-Tl-NGs" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="7fU-4g-6WG"/>
+                            <constraint firstItem="9lm-be-jXx" firstAttribute="leading" secondItem="ccz-kw-DAI" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Bnd-Rp-szt"/>
+                            <constraint firstItem="fqR-Ap-YoJ" firstAttribute="trailing" secondItem="ccz-kw-DAI" secondAttribute="trailing" type="default" id="Elu-QG-bdW"/>
+                            <constraint firstItem="fqR-Ap-YoJ" firstAttribute="top" secondItem="ccz-kw-DAI" secondAttribute="top" type="default" id="LlR-rl-Vnw"/>
+                            <constraint firstItem="fqR-Ap-YoJ" firstAttribute="leading" secondItem="ccz-kw-DAI" secondAttribute="leading" type="default" id="U6W-Wj-E8v"/>
+                            <constraint firstItem="9lm-be-jXx" firstAttribute="top" secondItem="WiQ-Tl-NGs" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ayf-Bw-feO"/>
+                            <constraint firstAttribute="bottom" secondItem="PMH-V9-B5o" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="dcI-g8-wfS"/>
+                            <constraint firstAttribute="trailing" secondItem="9lm-be-jXx" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="kA4-1U-yRo"/>
+                            <constraint firstItem="PMH-V9-B5o" firstAttribute="top" secondItem="9lm-be-jXx" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="kFI-gO-PpC"/>
+                            <constraint firstItem="PMH-V9-B5o" firstAttribute="leading" secondItem="ccz-kw-DAI" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="mSs-Nk-VzS"/>
+                            <constraint firstItem="WiQ-Tl-NGs" firstAttribute="leading" secondItem="ccz-kw-DAI" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="zTW-UD-KeK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="PMH-V9-B5o" id="Mp4-Ug-6GW"/>
+                        <outlet property="titleField" destination="WiQ-Tl-NGs" id="Cbr-Nx-Ral"/>
+                        <outlet property="valueField" destination="9lm-be-jXx" id="cpn-vY-7JD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NYn-2w-kc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1948" y="793"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="tv7-Mm-q1p">
             <objects>
-                <navigationController definesPresentationContext="YES" id="H5I-VS-BWU" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" toolbarHidden="NO" id="H5I-VS-BWU" sceneMemberID="viewController">
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EJt-DD-pQz">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="M0B-lB-7Te">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="gfg-aK-VL0" kind="relationship" relationship="rootViewController" id="aLe-Fs-9MO"/>
                     </connections>

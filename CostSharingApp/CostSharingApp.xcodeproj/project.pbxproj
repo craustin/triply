@@ -71,6 +71,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3940176C1653212F009324CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3964E7D916507533005BFF45 /* EventList.h */,
+				3964E7DA16507533005BFF45 /* EventList.m */,
+				3964E7E41651B0DF005BFF45 /* Event.h */,
+				3964E7E51651B0DF005BFF45 /* Event.m */,
+				390EDAC416528BB60008B7BC /* Cost.h */,
+				390EDAC516528BB60008B7BC /* Cost.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		39FC7D6F164E2C3200D194A1 = {
 			isa = PBXGroup;
 			children = (
@@ -110,14 +123,9 @@
 				3964E7D3165068D9005BFF45 /* EditEventViewController.m */,
 				3964E7E116507EA7005BFF45 /* EventDetailViewController.h */,
 				3964E7E216507EA7005BFF45 /* EventDetailViewController.m */,
-				3964E7D916507533005BFF45 /* EventList.h */,
-				3964E7DA16507533005BFF45 /* EventList.m */,
-				3964E7E41651B0DF005BFF45 /* Event.h */,
-				3964E7E51651B0DF005BFF45 /* Event.m */,
+				3940176C1653212F009324CC /* Model */,
 				390EDAC1165285DC0008B7BC /* CostDetailViewController.h */,
 				390EDAC2165285DC0008B7BC /* CostDetailViewController.m */,
-				390EDAC416528BB60008B7BC /* Cost.h */,
-				390EDAC516528BB60008B7BC /* Cost.m */,
 				39FC7D85164E2C3200D194A1 /* Supporting Files */,
 			);
 			path = CostSharingApp;

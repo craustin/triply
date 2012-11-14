@@ -41,12 +41,12 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"Owed to %@", self.currentEvent.clearThroughPerson];
+    return [NSString stringWithFormat:@"Through %@", self.currentEvent.clearThroughPerson];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.currentEvent.people.count;
+    return self.currentEvent.people.count - 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -60,9 +60,13 @@
     }
     
     NSUInteger row = [indexPath row];
-    NSString *person = [self.currentEvent.people objectAtIndex:row];
     
-    cell.textLabel.text = person;
+    // skip the clearer
+    int clearerIndex = [self.currentEvent.people indexOfObject:self.currentEvent.clearThroughPerson];
+    if (row >= clearerIndex)
+        row += 1;
+    
+    NSString *person = [self.currentEvent.people objectAtIndex:row];
     
     NSString *statement;
     float owes = [self.currentEvent getOwedForPerson:person];
@@ -70,7 +74,7 @@
         statement = [NSString stringWithFormat:@"%@ receives %.2f", person, -owes];
     else
         statement = [NSString stringWithFormat:@"%@ pays %.2f", person, owes];
-    cell.detailTextLabel.text = statement;
+    cell.textLabel.text = statement;
     
     return cell;
 }

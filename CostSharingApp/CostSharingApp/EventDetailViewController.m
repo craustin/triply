@@ -124,7 +124,6 @@
     _currentEvent.name = name;
     _currentEvent.people = people;
     self.title = name;
-    //TODO: [_parent.tableView reloadData];
 }
 
 @end

@@ -23,11 +23,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    return [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 }
 
 - (void)viewDidLoad
@@ -48,22 +44,19 @@
         [self.navBar setTitle:@"New Event"];
 }
 
--(BOOL)textFieldShouldReturn:(UITextField*)textField {
+-(BOOL)textFieldShouldReturn:(UITextField*)textField
+{
     [textField resignFirstResponder];
     return NO;
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)cancelPressed:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)cancelPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)savePressed:(id)sender {
+- (IBAction)savePressed:(id)sender
+{
     NSString *newName = [NSString stringWithString:self.name.text];
     NSString *trimPeople = [self.people.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSArray *newPeople = [trimPeople componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];

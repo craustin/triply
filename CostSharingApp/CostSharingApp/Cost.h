@@ -11,7 +11,7 @@
 @interface Cost : NSObject
 
 -(id)init;
--(id)initWithTitle:(NSString *)title value:(NSNumber *)value people:(NSMutableArray *)people;
+-(id)initWithTitle:(NSString *)title paidBy:(NSString *)paidBy value:(NSNumber *)value people:(NSMutableArray *)people;
 
 @property (nonatomic) NSString *title;
 @property (nonatomic) NSString *paidBy;

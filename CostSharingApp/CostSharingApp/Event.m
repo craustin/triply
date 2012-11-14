@@ -20,6 +20,7 @@
 
 -(id)initWithName:(NSString *)name lastUpdated:(NSString *)lastUpdated people:(NSArray *)people
 {
+    self = [super init];
     self.name = name;
     self.lastUpdated = lastUpdated;
     self.people = people;

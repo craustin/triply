@@ -12,17 +12,15 @@
 
 -(id)init
 {
-    self.title = @"";
-    self.paidBy = @"";
-    self.value = nil;
-    self.people = [[NSMutableArray alloc] init];
-    return self;
+    NSMutableArray *emptyPeople = [[NSMutableArray alloc] init];
+    return [self initWithTitle:@"" paidBy:@"" value:nil people:emptyPeople];
 }
 
--(id)initWithTitle:(NSString *)title value:(NSNumber *)value people:(NSMutableArray *)people
+-(id)initWithTitle:(NSString *)title paidBy:(NSString *)paidBy value:(NSNumber *)value people:(NSMutableArray *)people
 {
+    self = [super init];
     self.title = title;
-    self.paidBy = @"";
+    self.paidBy = paidBy;
     self.value = value;
     self.people = people;
     return self;

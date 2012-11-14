@@ -80,6 +80,11 @@
             owes += paidFor[i][p_index] - paidFor[p_index][i];
         [result setValue:[NSNumber numberWithFloat:owes] forKey:person];
     }
+    
+    for (int p_index = 0; p_index < self.people.count; p_index++)
+        free(paidFor[p_index]);
+    free(paidFor);
+    
     return result;
 }
 

@@ -8,6 +8,13 @@
 
 #import "Event.h"
 
+@interface Event () {
+    NSString *clearer;
+    NSDictionary *owedToClearer;
+}
+
+@end
+
 @implementation Event
 
 -(id)initWithName:(NSString *)name lastUpdated:(NSString *)lastUpdated people:(NSArray *)people
@@ -21,16 +28,20 @@
 
 -(void)refreshResults
 {
+    clearer = @"Nobody Yet";
+    owedToClearer = [[NSDictionary alloc] init];
 }
 
 -(float)getOwedForPerson:(NSString *)person
 {
-    return 500.0;
+    assert([owedToClearer.allKeys containsObject:person]);
+    NSNumber *value = [owedToClearer valueForKey:person];
+    return [value floatValue];
 }
 
 -(NSString *)clearThroughPerson
 {
-    return @"Nobody Yet";
+    return clearer;
 }
 
 @end

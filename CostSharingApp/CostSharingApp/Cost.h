@@ -14,6 +14,7 @@
 -(id)initWithTitle:(NSString *)title value:(NSNumber *)value people:(NSMutableArray *)people;
 
 @property (nonatomic) NSString *title;
+@property (nonatomic) NSString *paidBy;
 @property (nonatomic) NSNumber *value;
 @property (nonatomic) NSMutableArray *people;
 

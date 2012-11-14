@@ -13,6 +13,7 @@
 -(id)init
 {
     self.title = @"";
+    self.paidBy = @"";
     self.value = nil;
     self.people = [[NSMutableArray alloc] init];
     return self;
@@ -21,6 +22,7 @@
 -(id)initWithTitle:(NSString *)title value:(NSNumber *)value people:(NSMutableArray *)people
 {
     self.title = title;
+    self.paidBy = @"";
     self.value = value;
     self.people = people;
     return self;

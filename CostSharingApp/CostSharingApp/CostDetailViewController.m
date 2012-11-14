@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextField *valueField;
+@property (weak, nonatomic) IBOutlet UITextField *paidByField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -37,12 +38,14 @@
     self.tableView.dataSource = self;
     
     self.titleField.text = self.currentCost.title;
+    self.paidByField.text = self.currentCost.paidBy;
     self.valueField.text = self.currentCost.value.stringValue;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     self.currentCost.title = [NSString stringWithString:self.titleField.text];
+    self.currentCost.paidBy = [NSString stringWithString:self.paidByField.text];
     self.currentCost.value = [NSNumber numberWithFloat:self.valueField.text.floatValue];
 }
 

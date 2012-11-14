@@ -131,15 +131,24 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <sections/>
                             </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Paid By" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ta4-xO-CKG">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="dA5-cl-M5M"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="XXm-9J-sHe" firstAttribute="top" secondItem="sGb-Nx-B1S" secondAttribute="top" constant="20" symbolic="YES" type="default" id="0I0-fW-hXh"/>
+                            <constraint firstItem="ta4-xO-CKG" firstAttribute="top" secondItem="Xol-AR-feQ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="0Xr-68-zxo"/>
                             <constraint firstAttribute="trailing" secondItem="XXm-9J-sHe" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="1iQ-dk-9sh"/>
                             <constraint firstItem="Xol-AR-feQ" firstAttribute="top" secondItem="XXm-9J-sHe" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="3bh-py-KH8"/>
+                            <constraint firstItem="koN-Ua-VkH" firstAttribute="top" secondItem="ta4-xO-CKG" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="6m3-C4-HDP"/>
                             <constraint firstItem="koN-Ua-VkH" firstAttribute="leading" secondItem="sGb-Nx-B1S" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="9Yu-uV-yhc"/>
                             <constraint firstAttribute="trailing" secondItem="Xol-AR-feQ" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Bio-Pq-c38"/>
-                            <constraint firstItem="koN-Ua-VkH" firstAttribute="top" secondItem="Xol-AR-feQ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Wab-YC-avl"/>
+                            <constraint firstItem="ta4-xO-CKG" firstAttribute="leading" secondItem="sGb-Nx-B1S" secondAttribute="leading" constant="21" id="CQ3-7H-YRN"/>
                             <constraint firstItem="XXm-9J-sHe" firstAttribute="leading" secondItem="sGb-Nx-B1S" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Zai-H2-rq8"/>
                             <constraint firstAttribute="bottom" secondItem="koN-Ua-VkH" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="kmj-fE-kRS"/>
                             <constraint firstAttribute="trailing" secondItem="koN-Ua-VkH" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="pg3-7H-nmu"/>
@@ -157,6 +166,7 @@
                     <navigationItem key="navigationItem" title="Cost" id="g2c-66-rii"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="paidByField" destination="ta4-xO-CKG" id="jCc-eK-yO7"/>
                         <outlet property="tableView" destination="koN-Ua-VkH" id="YbU-ne-aWr"/>
                         <outlet property="titleField" destination="XXm-9J-sHe" id="HBZ-jW-J7p"/>
                         <outlet property="valueField" destination="Xol-AR-feQ" id="UJi-NZ-3GD"/>
@@ -276,28 +286,36 @@ Jillian</string>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="PMH-V9-B5o">
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="388" id="FNN-a0-p6N"/>
+                                    <constraint firstAttribute="height" constant="350" id="7hW-lC-IPe"/>
                                 </constraints>
                                 <sections/>
                             </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Paid By" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LXd-zz-oVF">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="LXd-zz-oVF" firstAttribute="leading" secondItem="ccz-kw-DAI" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="4Es-NK-Ne0"/>
                             <constraint firstAttribute="trailing" secondItem="PMH-V9-B5o" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="7U5-kC-cum"/>
                             <constraint firstAttribute="trailing" secondItem="WiQ-Tl-NGs" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="7fU-4g-6WG"/>
                             <constraint firstItem="9lm-be-jXx" firstAttribute="leading" secondItem="ccz-kw-DAI" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Bnd-Rp-szt"/>
                             <constraint firstItem="fqR-Ap-YoJ" firstAttribute="trailing" secondItem="ccz-kw-DAI" secondAttribute="trailing" type="default" id="Elu-QG-bdW"/>
                             <constraint firstItem="fqR-Ap-YoJ" firstAttribute="top" secondItem="ccz-kw-DAI" secondAttribute="top" type="default" id="LlR-rl-Vnw"/>
                             <constraint firstItem="fqR-Ap-YoJ" firstAttribute="leading" secondItem="ccz-kw-DAI" secondAttribute="leading" type="default" id="U6W-Wj-E8v"/>
+                            <constraint firstItem="LXd-zz-oVF" firstAttribute="top" secondItem="9lm-be-jXx" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="YKv-WL-O1U"/>
                             <constraint firstItem="9lm-be-jXx" firstAttribute="top" secondItem="WiQ-Tl-NGs" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ayf-Bw-feO"/>
                             <constraint firstAttribute="bottom" secondItem="PMH-V9-B5o" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="dcI-g8-wfS"/>
                             <constraint firstAttribute="trailing" secondItem="9lm-be-jXx" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="kA4-1U-yRo"/>
-                            <constraint firstItem="PMH-V9-B5o" firstAttribute="top" secondItem="9lm-be-jXx" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="kFI-gO-PpC"/>
                             <constraint firstItem="PMH-V9-B5o" firstAttribute="leading" secondItem="ccz-kw-DAI" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="mSs-Nk-VzS"/>
+                            <constraint firstAttribute="trailing" secondItem="LXd-zz-oVF" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="n1l-Qs-GI5"/>
+                            <constraint firstItem="PMH-V9-B5o" firstAttribute="top" secondItem="LXd-zz-oVF" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="qEH-CE-lGa"/>
                             <constraint firstItem="WiQ-Tl-NGs" firstAttribute="leading" secondItem="ccz-kw-DAI" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="zTW-UD-KeK"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="paidByField" destination="LXd-zz-oVF" id="G5R-2h-Btl"/>
                         <outlet property="tableView" destination="PMH-V9-B5o" id="Mp4-Ug-6GW"/>
                         <outlet property="titleField" destination="WiQ-Tl-NGs" id="Cbr-Nx-Ral"/>
                         <outlet property="valueField" destination="9lm-be-jXx" id="cpn-vY-7JD"/>

@@ -111,7 +111,16 @@
                             <constraint firstItem="Xol-AR-feQ" firstAttribute="leading" secondItem="sGb-Nx-B1S" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="q7I-a8-wxy"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Zaw-FH-wy2"/>
+                        <barButtonItem systemItem="trash" id="5Lc-Pw-qt2">
+                            <connections>
+                                <action selector="deletePressed:" destination="538-1H-qpp" id="WGU-wO-6IK"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Cost" id="g2c-66-rii"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="koN-Ua-VkH" id="YbU-ne-aWr"/>
                         <outlet property="titleField" destination="XXm-9J-sHe" id="HBZ-jW-J7p"/>
@@ -285,6 +294,41 @@ Jillian</string>
             <point key="canvasLocation" x="485" y="73"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="CostDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CostDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelPressed:"/>
+                <relationship kind="action" name="deletePressed:"/>
+                <relationship kind="action" name="savePressed:"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="titleField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="valueField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="EditEventViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditEventViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelPressed:"/>
+                <relationship kind="action" name="savePressed:"/>
+                <relationship kind="outlet" name="name" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="people" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="EventDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="EventListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventListViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

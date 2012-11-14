@@ -52,11 +52,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)cancelPressed:(id)sender {
+- (IBAction)cancelPressed:(id)sender
+{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)savePressed:(id)sender {
+- (IBAction)deletePressed:(id)sender
+{
+    [self.currentEvent.costs removeObject:self.currentCost];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)savePressed:(id)sender
+{
     if (![self.currentEvent.costs containsObject:self.currentCost])
         [self.currentEvent.costs addObject:self.currentCost];
     

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>trip.ly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+  <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="#">trip.ly costs</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#new">New Trip</a></li>
+            <li class="dropdown active">
+              <a href="#" class="class dropdown-toggle" data-toggle="dropdown">Trips <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+              <li class="active"><a href="#">Zubehaus</a></li>
+              <li><a href="#">Derby</a></li>
+              <li><a href="#">Mexico</a></li>
+              <li><a href="#">New Orleans</a></li>
+              <li class="divider"></li>
+              <li><a href="#">More Trips...</a></li>
+            </ul>
+          </ul>
+          <p class="navbar-text pull-right">
+            <a href="#" class="navbar-link"><strong><i class="icon-user icon-white" style="margin-top: 2px"></i> Craig</strong></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span10">
+        <div class="well" style="position:relative">
+          <i class="icon-road"></i> <strong><a href="#" id="trip-name" data-type="text" data-original-title="Enter Trip Name"></a></strong>
+            <div class="btn-group" style="position:absolute; right:17px; top:17px">
+              <a class="btn btn-primary" href="#editCostModal" role="button" data-toggle="modal"><i class="icon-pencil icon-white"></i>&nbsp; Add Cost</a>
+              <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+              <ul class="dropdown-menu">
+              <li><a href="#"><i class="icon-share"></i> Share...</a></li>
+              <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
+              </ul>
+            </div>
+          </ul>
+        </div>
+        <div>
+         <table class="table table-striped table-hover">
+          
+          <thead><tr><th>Title</th><th>Cost</th><th>Paid By</th><th>Paid For</th><th></th></thead>
+          <tbody>
+          <tr><td>Hotel</td><td>$500</td><td>Craig</td><td>Everyone</td><td style="width:20px"><a href="#editCostModal" role="button" data-toggle="modal"><i class="icon-pencil"></i></a></td></tr>
+          <tr><td>Food</td><td>$250</td><td>Xiaoyi</td><td>Everyone</td><td style="width:20px"><a href="#editCostModal" role="button" data-toggle="modal"><i class="icon-pencil"></i></a></td></tr>
+          <tr><td>Hotel</td><td>$500</td><td>Craig</td><td>Everyone</td><td style="width:20px"><a href="#editCostModal" role="button" data-toggle="modal"><i class="icon-pencil"></i></a></td></tr>
+          </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="span2">
+        <div class="well sidebar-nav" id="people-list">
+        </div> 
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Cost Modal -->
+  <div id="editCostModal" class="modal hide fade" tabindex="-1" role="dialog" style="width:350px">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+      <strong><a href="#" id="edit-cost-name" data-type="text">Hotel</a></strong><br/>
+    </div>
+    <div class="modal-body">
+      <a href="#" id="edit-cost-cost" data-type="text">$500</a><br/>
+      <a href="#" id="edit-cost-paid-by" data-type="typeahead" data-placement="right">Craig</a><br/>
+      <a href="#" id="edit-cost-paid-for" data-type="text">Craig, Xiaoyi, Jim, Wendy</a><br/>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn btn-primary">Save Changes</button>
+    </div>
+  </div>
+
+  <!-- New Person Modal -->
+  <div id="newPersonModal" class="modal hide fade" tabindex="-1" role="dialog" style="width:350px">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+      <strong>New Person</strong>
+    </div>
+    <div class="modal-body">
+      <a href="#" id="new-person-name" data-type="text"></a><br/>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn btn-primary" id="new-person-btn">Create</button>
+    </div>
+  </div>
+
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.0/select2.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.0/select2.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.4/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.4/bootstrap-editable/js/bootstrap-editable.min.js"></script>
+  <link href="css/select2-bootstrap.css" ref="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+  <script src="js/triply.js"></script>
+</body>
+</html>

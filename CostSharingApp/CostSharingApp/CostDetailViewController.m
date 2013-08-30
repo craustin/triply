@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *valueField;
 @property (weak, nonatomic) IBOutlet UITextField *paidByField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *staticTableView;
+
 
 @end
 
@@ -31,6 +33,8 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.staticTableView.delegate = self;
+    self.staticTableView.dataSource = self;
     
     self.titleField.text = self.currentCost.title;
     self.paidByField.text = self.currentCost.paidBy;
@@ -73,20 +77,47 @@
     return 1;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return @"Participants";
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.currentEvent.people.count;
+    if (tableView == self.tableView)
+        return self.currentEvent.people.count;
+    else
+        return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tv == self.tableView)
+        return [self createPersonRow:indexPath];
+    else
+        return [self createStaticRow:indexPath];
+}
+
+- (UITableViewCell *)createStaticRow:(NSIndexPath *)indexPath
+{
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tv dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [self.staticTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2
+                                      reuseIdentifier:CellIdentifier];
+    }
+    
+    NSUInteger row = [indexPath row];
+    if (row == 0)
+        cell.textLabel.text = @"Title";
+    else if (row == 1)
+        cell.textLabel.text = @"Paid By";
+    else if (row == 2)
+        cell.textLabel.text = @"Value";
+    
+    return cell;
+}
+
+- (UITableViewCell *)createPersonRow:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault

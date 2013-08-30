@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C2034" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="H5I-VS-BWU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="H5I-VS-BWU">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Event List View Controller - Events-->
@@ -119,49 +119,29 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XXm-9J-sHe">
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
-                                <connections>
-                                    <outlet property="delegate" destination="538-1H-qpp" id="Y4v-sl-3x2"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Value" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xol-AR-feQ">
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad" returnKeyType="done"/>
-                                <connections>
-                                    <outlet property="delegate" destination="538-1H-qpp" id="pvd-ZS-zPQ"/>
-                                </connections>
-                            </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="koN-Ua-VkH">
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="E7M-yV-9hG">
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="307" id="ONN-7M-7qc"/>
+                                </constraints>
                                 <sections/>
                             </tableView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Paid By" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ta4-xO-CKG">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="D5x-RI-GCl">
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="dA5-cl-M5M"/>
+                                    <constraint firstAttribute="height" constant="153" id="u1c-fs-fyM"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
-                                <connections>
-                                    <outlet property="delegate" destination="538-1H-qpp" id="iDD-ng-uuK"/>
-                                </connections>
-                            </textField>
+                                <sections/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="XXm-9J-sHe" firstAttribute="top" secondItem="sGb-Nx-B1S" secondAttribute="top" constant="20" symbolic="YES" type="default" id="0I0-fW-hXh"/>
-                            <constraint firstItem="ta4-xO-CKG" firstAttribute="top" secondItem="Xol-AR-feQ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="0Xr-68-zxo"/>
-                            <constraint firstAttribute="trailing" secondItem="XXm-9J-sHe" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="1iQ-dk-9sh"/>
-                            <constraint firstItem="Xol-AR-feQ" firstAttribute="top" secondItem="XXm-9J-sHe" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="3bh-py-KH8"/>
-                            <constraint firstItem="koN-Ua-VkH" firstAttribute="top" secondItem="ta4-xO-CKG" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="6m3-C4-HDP"/>
-                            <constraint firstItem="koN-Ua-VkH" firstAttribute="leading" secondItem="sGb-Nx-B1S" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="9Yu-uV-yhc"/>
-                            <constraint firstAttribute="trailing" secondItem="Xol-AR-feQ" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Bio-Pq-c38"/>
-                            <constraint firstItem="ta4-xO-CKG" firstAttribute="leading" secondItem="sGb-Nx-B1S" secondAttribute="leading" constant="21" id="CQ3-7H-YRN"/>
-                            <constraint firstItem="XXm-9J-sHe" firstAttribute="leading" secondItem="sGb-Nx-B1S" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Zai-H2-rq8"/>
-                            <constraint firstAttribute="bottom" secondItem="koN-Ua-VkH" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="kmj-fE-kRS"/>
-                            <constraint firstAttribute="trailing" secondItem="koN-Ua-VkH" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="pg3-7H-nmu"/>
-                            <constraint firstItem="Xol-AR-feQ" firstAttribute="leading" secondItem="sGb-Nx-B1S" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="q7I-a8-wxy"/>
+                            <constraint firstItem="D5x-RI-GCl" firstAttribute="top" secondItem="sGb-Nx-B1S" secondAttribute="top" type="default" id="4CP-D1-LGR"/>
+                            <constraint firstItem="E7M-yV-9hG" firstAttribute="bottom" secondItem="sGb-Nx-B1S" secondAttribute="bottom" type="default" id="cbf-Jo-qBe"/>
+                            <constraint firstItem="E7M-yV-9hG" firstAttribute="trailing" secondItem="sGb-Nx-B1S" secondAttribute="trailing" type="default" id="cgj-Mh-dFm"/>
+                            <constraint firstItem="E7M-yV-9hG" firstAttribute="leading" secondItem="sGb-Nx-B1S" secondAttribute="leading" type="default" id="sBh-5n-wdJ"/>
+                            <constraint firstItem="D5x-RI-GCl" firstAttribute="leading" secondItem="sGb-Nx-B1S" secondAttribute="leading" type="default" id="uLp-DQ-THj"/>
+                            <constraint firstItem="D5x-RI-GCl" firstAttribute="trailing" secondItem="sGb-Nx-B1S" secondAttribute="trailing" type="default" id="unf-ld-xgB"/>
                         </constraints>
                     </view>
                     <toolbarItems>
@@ -175,10 +155,8 @@
                     <navigationItem key="navigationItem" title="Cost" id="g2c-66-rii"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="paidByField" destination="ta4-xO-CKG" id="jCc-eK-yO7"/>
-                        <outlet property="tableView" destination="koN-Ua-VkH" id="YbU-ne-aWr"/>
-                        <outlet property="titleField" destination="XXm-9J-sHe" id="HBZ-jW-J7p"/>
-                        <outlet property="valueField" destination="Xol-AR-feQ" id="UJi-NZ-3GD"/>
+                        <outlet property="staticTableView" destination="D5x-RI-GCl" id="OKU-5e-WOI"/>
+                        <outlet property="tableView" destination="E7M-yV-9hG" id="HTs-RG-ySn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="81A-gK-2Cf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -287,59 +265,37 @@ Jillian</string>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WiQ-Tl-NGs">
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Nv6-br-UHs" id="iG3-Dh-rjp"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Value" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9lm-be-jXx">
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad" returnKeyType="done"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Nv6-br-UHs" id="oZR-mu-7j3"/>
-                                </connections>
-                            </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="PMH-V9-B5o">
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="350" id="7hW-lC-IPe"/>
+                                    <constraint firstAttribute="height" constant="351" id="fPv-Tm-LKp"/>
                                 </constraints>
                                 <sections/>
                             </tableView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Paid By" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LXd-zz-oVF">
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Nv6-br-UHs" id="H36-rl-5Ei"/>
-                                </connections>
-                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Txo-HW-Mui">
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="153" id="MdC-59-USf"/>
+                                </constraints>
+                                <sections/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="LXd-zz-oVF" firstAttribute="leading" secondItem="ccz-kw-DAI" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="4Es-NK-Ne0"/>
-                            <constraint firstAttribute="trailing" secondItem="PMH-V9-B5o" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="7U5-kC-cum"/>
-                            <constraint firstAttribute="trailing" secondItem="WiQ-Tl-NGs" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="7fU-4g-6WG"/>
-                            <constraint firstItem="9lm-be-jXx" firstAttribute="leading" secondItem="ccz-kw-DAI" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Bnd-Rp-szt"/>
+                            <constraint firstItem="PMH-V9-B5o" firstAttribute="leading" secondItem="ccz-kw-DAI" secondAttribute="leading" type="default" id="6Ew-N5-PMt"/>
+                            <constraint firstItem="Txo-HW-Mui" firstAttribute="leading" secondItem="ccz-kw-DAI" secondAttribute="leading" type="default" id="8zl-jH-V6v"/>
+                            <constraint firstItem="Txo-HW-Mui" firstAttribute="trailing" secondItem="ccz-kw-DAI" secondAttribute="trailing" type="default" id="BBv-sr-FHl"/>
+                            <constraint firstItem="Txo-HW-Mui" firstAttribute="top" secondItem="fqR-Ap-YoJ" secondAttribute="bottom" type="default" id="ETW-HT-CbA"/>
                             <constraint firstItem="fqR-Ap-YoJ" firstAttribute="trailing" secondItem="ccz-kw-DAI" secondAttribute="trailing" type="default" id="Elu-QG-bdW"/>
                             <constraint firstItem="fqR-Ap-YoJ" firstAttribute="top" secondItem="ccz-kw-DAI" secondAttribute="top" type="default" id="LlR-rl-Vnw"/>
                             <constraint firstItem="fqR-Ap-YoJ" firstAttribute="leading" secondItem="ccz-kw-DAI" secondAttribute="leading" type="default" id="U6W-Wj-E8v"/>
-                            <constraint firstItem="LXd-zz-oVF" firstAttribute="top" secondItem="9lm-be-jXx" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="YKv-WL-O1U"/>
-                            <constraint firstItem="9lm-be-jXx" firstAttribute="top" secondItem="WiQ-Tl-NGs" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ayf-Bw-feO"/>
-                            <constraint firstAttribute="bottom" secondItem="PMH-V9-B5o" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="dcI-g8-wfS"/>
-                            <constraint firstAttribute="trailing" secondItem="9lm-be-jXx" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="kA4-1U-yRo"/>
-                            <constraint firstItem="PMH-V9-B5o" firstAttribute="leading" secondItem="ccz-kw-DAI" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="mSs-Nk-VzS"/>
-                            <constraint firstAttribute="trailing" secondItem="LXd-zz-oVF" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="n1l-Qs-GI5"/>
-                            <constraint firstItem="PMH-V9-B5o" firstAttribute="top" secondItem="LXd-zz-oVF" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="qEH-CE-lGa"/>
-                            <constraint firstItem="WiQ-Tl-NGs" firstAttribute="leading" secondItem="ccz-kw-DAI" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="zTW-UD-KeK"/>
+                            <constraint firstItem="PMH-V9-B5o" firstAttribute="trailing" secondItem="ccz-kw-DAI" secondAttribute="trailing" type="default" id="dGB-17-2a5"/>
+                            <constraint firstItem="PMH-V9-B5o" firstAttribute="bottom" secondItem="ccz-kw-DAI" secondAttribute="bottom" type="default" id="ykx-nT-TSg"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="paidByField" destination="LXd-zz-oVF" id="G5R-2h-Btl"/>
+                        <outlet property="staticTableView" destination="Txo-HW-Mui" id="whn-Ir-HeC"/>
                         <outlet property="tableView" destination="PMH-V9-B5o" id="Mp4-Ug-6GW"/>
-                        <outlet property="titleField" destination="WiQ-Tl-NGs" id="Cbr-Nx-Ral"/>
-                        <outlet property="valueField" destination="9lm-be-jXx" id="cpn-vY-7JD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NYn-2w-kc1" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -10,8 +10,62 @@ $(function(){
     emptytext: 'Paid By'
   });
   $('#edit-cost-paid-for').editable({ emptytext: 'Paid For' }); 
-  $('#new-person-name').editable({ emptytext: 'Name' }); 
+  $('#new-Person-name').editable({ emptytext: 'Name' }); 
 
+  // Create model for costs
+  var Cost = Backbone.Model.extend({
+    defaults:{
+		title:'',
+		price:0,
+		paidBy:'',
+		paidFor:''
+    }
+  });
+  
+  var CostList = Backbone.Collection.extend({
+	  model: Cost
+  });  
+  
+  var CostListView = Backbone.View.extend({
+  	tagName: 'table',
+		className: '',
+		initialize: function(){
+			_.bindAll(this, "renderCost");
+		},
+		renderCost: function(model){
+		  var costView = new CostView({model: model});
+			this.$el.append(costView.render());
+		},
+		render: function(){
+		      var costHeader = '<thead><tr><th>Title</th><th>Cost</th><th>Paid By</th><th>Paid For</th><th></th></thead><tbody>';
+		      var costFooter = '</tbody>';
+
+		      this.$el.empty();
+		      this.$el.append(costHeader);
+		      this.collection.each(this.renderCost);
+		      this.$el.append(costFooter);
+		      return this.$el;
+		    }
+  });
+	
+  var CostView = Backbone.View.extend({
+    tagName: 'tr',
+    
+    initialize: function(){
+      this.listenTo(this.model, 'change', this.render);
+    },
+		
+    render: function(){
+      this.$el.html('<td>' + this.model.get('title') + '</td>' +
+										'<td>' + this.model.get('price') + '</td>' +
+										'<td>' + this.model.get('paidBy') + '</td>' +
+										'<td>' + this.model.get('paidFor') + '</td>' +
+										'<a href="#editCostModal" role="button" data-toggle="modal"><i class="icon-pencil"></i></a></td>'
+		);
+      return this.$el;
+    },
+  });
+  
   // Create model for people 
   var Person = Backbone.Model.extend({
     defaults:{
@@ -71,6 +125,20 @@ $(function(){
     }
   });
 
+  var costs = new CostList([
+		new Cost({title: 'Food', price: 100, paidBy: 'Craig', paidFor:'Everyone'}),
+		new Cost({title: 'Gas', price: 200.10, paidBy: 'Jim', paidFor:'Everyone'}),
+		new Cost({title: 'Hotel', price: 1000, paidBy: 'Craig', paidFor:'Everyone'})
+  ]);
+	
+	window.costs = costs;
+	
+	var renderCostList = function(){
+		var view = new CostListView({collection: costs});
+		$("#cost-list").html(view.render());
+	};
+	renderCostList();
+
   var trip_name = 'Zubehaus Weekend';
   var people = new PersonList([
     new Person({ name: 'Craig', clear_through: true }),
@@ -98,6 +166,8 @@ $(function(){
     people.add([{ name: name }]);
     $('#newPersonModal').modal('hide');
   });
+
+	costs.listenTo(costs, 'add', renderCostList);
 
   // do i really need to create a new PersonListView every time we add?
   people.listenTo(people, 'add', renderPersonList);

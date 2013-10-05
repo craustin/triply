@@ -28,7 +28,7 @@ $(function(){
   
   var CostListView = Backbone.View.extend({
   	tagName: 'table',
-		className: '',
+		className: 'table table-striped table-hover',
 		initialize: function(){
 			_.bindAll(this, "renderCost");
 		},

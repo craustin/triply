@@ -111,7 +111,7 @@ $(function(){
     },
     render: function(){
       var star = this.model.get('clear_through') ? ' <i class="icon-star"></i>' : '';
-      this.$el.html('<a href="#">' + this.model.get('name') + star + '</a>');
+      this.$el.html('<table style="width:100%"><tr><td width="*"><a href="#">' + this.model.get('name') + star + '</a></td><td style="text-align: right">5.00</td>');
       return this.$el;
     },
     clicked: function(e){
@@ -130,7 +130,6 @@ $(function(){
 		new Cost({title: 'Gas', price: 200.10, paidBy: 'Jim', paidFor:'Everyone'}),
 		new Cost({title: 'Hotel', price: 1000, paidBy: 'Craig', paidFor:'Everyone'})
   ]);
-	
 	window.costs = costs;
 	
 	var renderCostList = function(){
@@ -153,7 +152,6 @@ $(function(){
   $('#trip-name').editable('option', 'value', trip_name);
 
   var renderPersonList = function(){
-    // shouldn't this function be in a view somewhere?
     var view = new PersonListView({ collection: people });
     $("#people-list").html(view.render());
   };

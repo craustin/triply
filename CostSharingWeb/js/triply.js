@@ -111,7 +111,8 @@ $(function(){
     },
     render: function(){
       var star = this.model.get('clear_through') ? ' <i class="icon-star"></i>' : '';
-      this.$el.html('<table style="width:100%"><tr><td width="*"><a href="#">' + this.model.get('name') + star + '</a></td><td style="text-align: right">5.00</td>');
+      var costColor = this.model.get('clear_through') ? '#CCCCCC' : '#000000';
+      this.$el.html('<table style="width:100%"><tr><td width="*"><a href="#">' + this.model.get('name') + star + '</a></td><td style="text-align: right; color: ' + costColor + '">5.00</td>');
       return this.$el;
     },
     clicked: function(e){

@@ -7,3 +7,12 @@ and the linked example project here: https://github.com/rxl/angular-flask/tree/e
 go to http://desolate-thicket-4407.herokuapp.com/#/share-costs to see the app running
 
 conversion from backbone to angular is in progress, so the app currently is just the static html with no js
+
+use the following to update the heroku app: 
+
+1) (just once per repo)
+	heroku git:remote --app desolate-thicket-4407
+
+2) git add [changed files]
+git commit -m "[commit message]"
+git push heroku master

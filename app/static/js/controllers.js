@@ -24,6 +24,7 @@ controllers.controller('PeopleListController', ['$scope',
 			{ name: 'Jim' },
 			{ name: 'Wendy' },
 			{ name: 'Ankur' },
-			{ name: 'Alex' }
+			{ name: 'Alex' },
+			{ name: 'Eric' }
 		];
 	}]);

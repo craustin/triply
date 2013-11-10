@@ -1,0 +1,9 @@
+server set up following the flask tutorial here: https://devcenter.heroku.com/articles/getting-started-with-python
+
+angular flask app based on the top answer here: http://stackoverflow.com/questions/11522151/typical-angular-js-workflow-and-project-structure-with-python-flask
+
+and the linked example project here: https://github.com/rxl/angular-flask/tree/e7e6bc1de5742eab0fcb5e8a82470bb3e072388a
+
+go to http://desolate-thicket-4407.herokuapp.com/#/share-costs to see the app running
+
+conversion from backbone to angular is in progress, so the app currently is just the static html with no js

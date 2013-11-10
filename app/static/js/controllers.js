@@ -27,4 +27,8 @@ controllers.controller('PeopleListController', ['$scope',
 			{ name: 'Alex' },
 			{ name: 'Eric' }
 		];
+
+		$scope.asdf = function asdf() {
+			alert('you clicked the add person button!');
+		};
 	}]);

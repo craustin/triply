@@ -11,5 +11,5 @@ angular.module('triplyApp', [
 ]).
 config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/share-costs', {templateUrl: 'static/partials/cost_sharing.html', controller: 'CostSharingController'});
-	// $routeProvider.otherwise({redirectTo: '/share-costs'});
+	$routeProvider.otherwise({redirectTo: '/share-costs'});
 }]);

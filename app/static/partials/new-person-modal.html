@@ -1,13 +1,19 @@
-<div id="newPersonModal" class="modal hide fade" tabindex="-1" role="dialog" style="width:350px">
+<div>
+
 	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+		<button type="button" class="close" ng-click="cancel()"><i class="icon-remove"></i></button>
 		<strong>New Person</strong>
 	</div>
+
 	<div class="modal-body">
-		<a href="#" id="new-person-name" data-type="text"></a><br/>
+		<form ng-submit="create(newPersonName)">
+			<input type="text" ng-model="newPersonName" placeholder="Name" autofocus/>
+		</form>
 	</div>
+
 	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-		<button class="btn btn-primary" id="new-person-btn">Create</button>
+		<button class="btn" ng-click="close()">Close</button>
+		<button class="btn btn-primary" ng-click="create()">Create</button>
 	</div>
+
 </div>

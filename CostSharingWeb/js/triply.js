@@ -10,7 +10,7 @@ $(function(){
     emptytext: 'Paid By'
   });
   $('#edit-cost-paid-for').editable({ emptytext: 'Paid For' }); 
-  $('#new-Person-name').editable({ emptytext: 'Name' }); 
+  $('#new-person-name').editable({ emptytext: 'Name' }); 
 
   // Create model for costs
   var Cost = Backbone.Model.extend({

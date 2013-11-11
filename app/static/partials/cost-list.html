@@ -1,0 +1,28 @@
+<div ng-controller="CostListController">
+
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Cost</th>
+				<th>Paid By</th>
+				<th>Paid For</th>
+				<th></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr ng-repeat="cost in costs">
+				<td>{{cost.title}}</td>
+				<td>{{cost.price}}</td>
+				<td>{{cost.paidBy}}</td>
+				<td>{{cost.paidFor}}</td>
+				<td>
+					<!-- TODO: make this a button/link that opens a modal dialog -->
+					<a href="#editCostModal" role="button" data-toggle="modal"><i class="icon-pencil"></i></a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

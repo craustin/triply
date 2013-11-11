@@ -9,14 +9,28 @@ var controllers = angular.module('triplyApp.controllers');
 
 controllers.controller('CostSharingController', ['$scope',
 	function CostSharingController($scope) {
-		console.info('cost sharing controller asdf!!!');
-		$scope.peopleList = 'static/partials/people-list.html';
-		console.info($scope.peopleList);
 
+		$scope.costList = 'static/partials/cost-list.html';
+		$scope.peopleList = 'static/partials/people-list.html';
 
 		$scope.addPerson = function() {
 			console.info('addPerson');
 		};
+	}]);
+
+controllers.controller('CostListController', ['$scope', '$modal',
+	function CostListController($scope, $modal) {
+		console.info('cost list controller');
+
+		$scope.costs = [
+			{title: 'Food', price: 100, paidBy: 'Craig', paidFor:'Everyone'},
+			{title: 'Gas', price: 200.10, paidBy: 'Jim', paidFor:'Everyone'},
+			{title: 'Hotel', price: 1000, paidBy: 'Craig', paidFor:'Everyone'}
+		];
+
+		console.info($scope.costs[0]);
+		console.info($scope.costs[1]);
+		console.info($scope.costs[2]);
 	}]);
 
 controllers.controller('PeopleListController', ['$scope', '$modal',

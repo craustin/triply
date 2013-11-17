@@ -18,8 +18,7 @@
 				<td>{{cost.paidBy}}</td>
 				<td>{{cost.paidFor}}</td>
 				<td>
-					<!-- TODO: make this a button/link that opens a modal dialog -->
-					<a href="#editCostModal" role="button" data-toggle="modal"><i class="icon-pencil"></i></a>
+					<a role="button" href ng-click="editCost($index, cost)"><i class="icon-pencil"></i></a>
 				</td>
 			</tr>
 		</tbody>

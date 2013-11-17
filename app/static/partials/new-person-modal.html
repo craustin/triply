@@ -1,4 +1,4 @@
-<div>
+<div><form ng-submit="create(newPersonName)">
 
 	<div class="modal-header">
 		<button type="button" class="close" ng-click="close()"><i class="icon-remove"></i></button>
@@ -6,14 +6,12 @@
 	</div>
 
 	<div class="modal-body">
-		<form ng-submit="create(newPersonName)">
-			<input type="text" ng-model="newPersonName" placeholder="Name" autofocus/>
-		</form>
+		<input type="text" ng-model="newPersonName" placeholder="Name" autofocus/>
 	</div>
 
 	<div class="modal-footer">
-		<button class="btn" ng-click="close()">Close</button>
-		<button class="btn btn-primary" ng-click="create()">Create</button>
+		<button type="button" class="btn" ng-click="close()">Close</button>
+		<button type="submit" class="btn btn-primary">Create</button>
 	</div>
 
-</div>
+</form></div>

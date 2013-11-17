@@ -34,20 +34,23 @@
 		<div class="span10">
 			<div class="well" style="position:relative">
 				<i class="icon-road"></i> <strong><a href="#" id="trip-name" data-type="text" data-original-title="Enter Trip Name"></a></strong>
-					<div class="btn-group" style="position:absolute; right:17px; top:17px">
-						<a class="btn btn-primary" href="#editCostModal" role="button" data-toggle="modal"><i class="icon-pencil icon-white"></i>&nbsp; Add Cost</a>
-						<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-						<ul class="dropdown-menu">
-						<li><a href="#"><i class="icon-share"></i> Share...</a></li>
-						<li><a href="#"><i class="icon-trash"></i> Delete</a></li>
-						</ul>
-					</div>
-				</ul>
+				<div class="btn-group" style="position:absolute; right:17px; top:17px">
+					<a class="btn btn-primary" role="button" href ng-click="addCost()">
+						<i class="icon-pencil icon-white"></i>&nbsp; Add Cost
+					</a>
+					<a class="btn btn-primary dropdown-toggle" href>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href><i class="icon-share"></i> Share...</a></li>
+						<li><a href><i class="icon-trash"></i> Delete</a></li>
+					</ul>
+				</div>
 			</div>
-			<div ng-include="costList" />
+			<div ng-include="costListTemplate" />
 		</div>
 		<div class="span2">
-			<div ng-include="peopleList" />
+			<div ng-include="peopleListTemplate" />
 		</div>
 	</div>
 </div>

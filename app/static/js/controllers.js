@@ -2,40 +2,15 @@
 
 /* Controllers */
 
-console.info('controllers.js');
-
 angular.module('triplyApp.controllers', []);
 var controllers = angular.module('triplyApp.controllers');
 
-controllers.controller('CostSharingController', ['$scope',
-	function CostSharingController($scope) {
+controllers.controller('CostSharingController', ['$scope', '$modal',
+	function CostSharingController($scope, $modal) {
 
-		$scope.costList = 'static/partials/cost-list.html';
-		$scope.peopleList = 'static/partials/people-list.html';
-
-		$scope.addPerson = function() {
-			console.info('addPerson');
-		};
-	}]);
-
-controllers.controller('CostListController', ['$scope', '$modal',
-	function CostListController($scope, $modal) {
-		console.info('cost list controller');
-
-		$scope.costs = [
-			{title: 'Food', price: 100, paidBy: 'Craig', paidFor:'Everyone'},
-			{title: 'Gas', price: 200.10, paidBy: 'Jim', paidFor:'Everyone'},
-			{title: 'Hotel', price: 1000, paidBy: 'Craig', paidFor:'Everyone'}
-		];
-
-		console.info($scope.costs[0]);
-		console.info($scope.costs[1]);
-		console.info($scope.costs[2]);
-	}]);
-
-controllers.controller('PeopleListController', ['$scope', '$modal',
-	function PeopleListController($scope, $modal) {
-		console.info('people list controller');
+		// values declared on this scope will be accessible on the scopes of all child controllers
+		// (child controllers are controllers for all subsections of the cost_sharing page, 
+		// including those included via ng-include)
 
 		$scope.people = [
 			{ name: 'Craig' },
@@ -47,8 +22,71 @@ controllers.controller('PeopleListController', ['$scope', '$modal',
 			{ name: 'Eric' }
 		];
 
+		$scope.costs = [
+			{title: 'Food', price: 100, paidBy: 'Craig', paidFor:'Everyone'},
+			{title: 'Gas', price: 200.10, paidBy: 'Jim', paidFor:'Everyone'},
+			{title: 'Hotel', price: 1000, paidBy: 'Craig', paidFor:'Everyone'}
+		];
+
+		$scope.costListTemplate = 'static/partials/cost-list.html';
+		$scope.peopleListTemplate = 'static/partials/people-list.html';
+
+		var EditCostModalController = function ($scope, $modalInstance, newCost) {
+
+			$scope.newCost = newCost;
+
+			$scope.create = function (cost) {
+				$modalInstance.close(cost);
+			};
+
+			$scope.close = function () {
+				$modalInstance.dismiss('cancel');
+			};
+		};
+
+		$scope.addCost = function() {
+			$scope.editCost(-1);
+		};
+
+		$scope.editCost = function(index, originalCost) {
+
+			var modalInstance = $modal.open({
+				templateUrl: 'static/partials/edit-cost-modal.html',
+				controller: EditCostModalController,
+				resolve: {
+					newCost: function() {
+						if (!originalCost)
+							return {};
+
+						var copy = {
+								title: originalCost.title,
+								price: originalCost.price,
+								paidBy: originalCost.paidBy,
+								paidFor: originalCost.paidFor
+							};
+						return copy;
+					}
+				}
+			});
+
+			modalInstance.result.then(function (cost) {
+				if (index >= 0)
+					$scope.costs[index] = cost;
+				else
+					$scope.costs.push(cost);
+			});
+		};
+	}]);
+
+controllers.controller('CostListController', ['$scope', '$modal',
+	function CostListController($scope, $modal) {
+
+	}]);
+
+controllers.controller('PeopleListController', ['$scope', '$modal',
+	function PeopleListController($scope, $modal) {
+
 		var NewPersonModalController = function ($scope, $modalInstance) {
-			console.info('NewPersonModalController');
 
 			$scope.create = function (newPersonName) {
 				$modalInstance.close(newPersonName);
@@ -67,12 +105,7 @@ controllers.controller('PeopleListController', ['$scope', '$modal',
 			});
 
 			modalInstance.result.then(function (name) {
-				$scope.people.push({ name: name});
+				$scope.people.push({ name: name });
 			});
 		};
 	}]);
-
-// controllers.controller('NewPersonModalController', ['$scope', '$modal',
-// 	function NewPersonModalController($scope, $modal) {
-// 		console.info('NewPersonModalController');
-// 	}]);

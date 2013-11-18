@@ -1,17 +1,17 @@
-<div><form ng-submit="create(newCost)">
+<div><form ng-submit="create(formText)">
 
 	<div class="modal-header">
 		<button type="button" class="close" ng-click="close()"><i class="icon-remove"></i></button>
-		<input type="text" ng-model="newCost.title" placeholder="Hotel" autofocus/>
+		<input type="text" ng-model="formText.titleText" placeholder="Hotel" autofocus/>
 		<br/>
 	</div>
 
 	<div class="modal-body">
-		<input type="text" ng-model="newCost.price" placeholder="$500" />
+		<input type="text" ng-model="formText.priceText" placeholder="$500" />
 		<br/>
-		<input type="text" ng-model="newCost.paidBy" placeholder="Craig" />
+		<input type="text" ng-model="formText.paidByText" placeholder="Craig" />
 		<br/>
-		<input type="text" ng-model="newCost.paidFor" placeholder="Craig, Xiaoyi, Jim, Wendy" />
+		<input type="text" ng-model="formText.paidForText" placeholder="Craig, Xiaoyi, Jim, Wendy" />
 		<br/>
 	</div>
 

@@ -16,7 +16,7 @@
 				<td>{{cost.title}}</td>
 				<td>{{cost.price}}</td>
 				<td>{{cost.paidBy}}</td>
-				<td>{{cost.paidFor}}</td>
+				<td>{{printPaidFor(cost)}}</td>
 				<td>
 					<a role="button" href ng-click="editCost($index, cost)"><i class="icon-pencil"></i></a>
 				</td>

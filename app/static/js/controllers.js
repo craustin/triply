@@ -12,6 +12,11 @@ controllers.controller('CostSharingController', ['$scope', '$modal',
 		// (child controllers are controllers for all subsections of the cost_sharing page, 
 		// including those included via ng-include)
 
+		var sortPeople = function() {
+			var comparePeople = function(a, b) { return a.name > b.name; }
+			$scope.people.sort(comparePeople);
+		}
+
 		$scope.people = [
 			{ name: 'Craig' },
 			{ name: 'Xiaoyi' },
@@ -19,24 +24,46 @@ controllers.controller('CostSharingController', ['$scope', '$modal',
 			{ name: 'Wendy' },
 			{ name: 'Ankur' },
 			{ name: 'Alex' },
-			{ name: 'Eric' }
 		];
+		sortPeople();
+
+		$scope.getEveryone = function() {
+			var allPeeps = [];
+			for (var i=0; i<$scope.people.length; ++ i)
+				allPeeps.push($scope.people[i].name);
+			return allPeeps;
+		}
+
+		$scope.savePerson = function(person) {
+			// TODO: handle the case where the person already exists
+			$scope.people.push(person);
+			sortPeople();
+		};
 
 		$scope.costs = [
-			{title: 'Food', price: 100, paidBy: 'Craig', paidFor:'Everyone'},
-			{title: 'Gas', price: 200.10, paidBy: 'Jim', paidFor:'Everyone'},
-			{title: 'Hotel', price: 1000, paidBy: 'Craig', paidFor:'Everyone'}
+			{
+				title: 'Food', price: 100, paidBy: 'Craig',
+				paidFor: $scope.getEveryone()
+			},
+			{
+				title: 'Gas', price: 200.10, paidBy: 'Jim',
+				paidFor: [ 'Craig', 'Xiaoyi' ]
+			},
+			{
+				title: 'Hotel', price: 1000, paidBy: 'Craig',
+				paidFor: $scope.getEveryone()
+			}
 		];
 
 		$scope.costListTemplate = 'static/partials/cost-list.html';
 		$scope.peopleListTemplate = 'static/partials/people-list.html';
 
-		var EditCostModalController = function ($scope, $modalInstance, newCost) {
+		var EditCostModalController = function ($scope, $modalInstance, formText) {
 
-			$scope.newCost = newCost;
+			$scope.formText = formText;
 
-			$scope.create = function (cost) {
-				$modalInstance.close(cost);
+			$scope.create = function (formText) {
+				$modalInstance.close(formText);
 			};
 
 			$scope.close = function () {
@@ -50,32 +77,85 @@ controllers.controller('CostSharingController', ['$scope', '$modal',
 
 		$scope.editCost = function(index, originalCost) {
 
-			var modalInstance = $modal.open({
-				templateUrl: 'static/partials/edit-cost-modal.html',
-				controller: EditCostModalController,
-				resolve: {
-					newCost: function() {
-						if (!originalCost)
-							return {};
+			var convertToCost = function(formText) {
 
-						var copy = {
-								title: originalCost.title,
-								price: originalCost.price,
-								paidBy: originalCost.paidBy,
-								paidFor: originalCost.paidFor
-							};
-						return copy;
-					}
-				}
-			});
+				var parsePaidFor = function(paidForText) {
+					var peeps = paidForText.split(',');
+					for (var i=0; i<peeps.length; ++i)
+						peeps[i] = jQuery.trim(peeps[i]);
+					peeps.sort();
 
-			modalInstance.result.then(function (cost) {
+					if (peeps.length == 1 && peeps[0].toLowerCase() == 'everyone')
+						return $scope.getEveryone();
+
+					for (var i=0; i<peeps.length; ++i)
+						if ($scope.getEveryone().indexOf(peeps[i]) < 0)
+							$scope.savePerson({ name: peeps[i] });
+
+					return peeps;
+				};
+
+				var newCost = {};
+				newCost.title = formText.titleText;
+				newCost.price = formText.priceText;
+				newCost.paidBy = formText.paidByText;
+				newCost.paidFor = parsePaidFor(formText.paidForText);
+				return newCost;
+			};
+
+			var saveCost = function(cost) {
 				if (index >= 0)
 					$scope.costs[index] = cost;
 				else
 					$scope.costs.push(cost);
+			};
+
+			var modalInstance = $modal.open({
+				templateUrl: 'static/partials/edit-cost-modal.html',
+				controller: EditCostModalController,
+				resolve: {
+					formText: function() {
+						if (!originalCost)
+							return {};
+
+						var ft = {
+								titleText: originalCost.title,
+								priceText: originalCost.price,
+								paidByText: originalCost.paidBy,
+								paidForText: $scope.printPaidFor(originalCost, true)
+							};
+						return ft;
+					}
+				}
+			});
+
+			modalInstance.result.then(function (formText) {
+				var newCost = convertToCost(formText);
+				saveCost(newCost);
 			});
 		};
+
+		$scope.printPaidFor = function(cost, expandPaidFor) {
+			if (!expandPaidFor) {
+				var usedByEveryone = true;
+				for (var i=0; i<$scope.people.length && usedByEveryone; ++i)
+					if (cost.paidFor.indexOf($scope.people[i].name) < 0)
+						usedByEveryone = false;
+
+				if (usedByEveryone)
+					return 'Everyone';
+			}
+
+			var pfs = '';
+			for (var i=0; i<cost.paidFor.length; ++i) {
+				if (i > 0)
+					pfs += ', '
+				pfs += cost.paidFor[i];
+			}
+
+			return pfs;
+		};
+
 	}]);
 
 controllers.controller('CostListController', ['$scope', '$modal',
@@ -105,7 +185,7 @@ controllers.controller('PeopleListController', ['$scope', '$modal',
 			});
 
 			modalInstance.result.then(function (name) {
-				$scope.people.push({ name: name });
+				$scope.savePerson({ name: name });
 			});
 		};
 	}]);

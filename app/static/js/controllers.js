@@ -93,6 +93,17 @@ controllers.controller('CostSharingController', ['$scope', '$modal',
 
 			var convertToCost = function(formText) {
 
+				var addPersonIfNew = function(personName) {
+					if ($scope.getEveryone().indexOf(personName) < 0)
+						$scope.savePerson({ name: personName });
+				}
+
+				var parsePaidBy = function(paidByText) {
+					var personName = jQuery.trim(paidByText);
+					addPersonIfNew(personName);
+					return personName;
+				}
+
 				var parsePaidFor = function(paidForText) {
 					var peeps = paidForText.split(',');
 					for (var i=0; i<peeps.length; ++i)
@@ -103,8 +114,7 @@ controllers.controller('CostSharingController', ['$scope', '$modal',
 						return $scope.getEveryone();
 
 					for (var i=0; i<peeps.length; ++i)
-						if ($scope.getEveryone().indexOf(peeps[i]) < 0)
-							$scope.savePerson({ name: peeps[i] });
+						addPersonIfNew(peeps[i]);
 
 					return peeps;
 				};
@@ -112,7 +122,7 @@ controllers.controller('CostSharingController', ['$scope', '$modal',
 				var newCost = {};
 				newCost.title = formText.titleText;
 				newCost.price = formText.priceText;
-				newCost.paidBy = formText.paidByText;
+				newCost.paidBy = parsePaidBy(formText.paidByText);
 				newCost.paidFor = parsePaidFor(formText.paidForText);
 				return newCost;
 			};

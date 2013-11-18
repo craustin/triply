@@ -7,9 +7,11 @@
 				<tbody>
 					<tr>
 						<td width="*">
-							<a href="#">{{person.name}} <i class="icon-star" ng-if="$first"></i></a>
+							<a href="#">{{person.name}} <i class="icon-star" ng-if="isClearPerson(person)"></i></a>
 						</td>
-						<td ng-style="{'text-align': 'right', 'color': $first ? '#CCCCCC' : '#000000'}">5.00</td>
+						<td ng-style="{'text-align': 'right', 'color': isClearPerson(person) ? '#CCCCCC' : '#000000'}">
+							{{printCostTotalForPerson(person)}}
+						</td>
 					</tr>
 				</tbody>
 			</table>

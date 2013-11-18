@@ -55,6 +55,20 @@ controllers.controller('CostSharingController', ['$scope', '$modal',
 			}
 		];
 
+		$scope.getCostTotalForPerson = function(person) {
+			// TODO: consider caching this value and updating on cost save
+			var total = 0;
+			for (var i=0; i<$scope.costs.length; ++i) {
+				var cost = $scope.costs[i];
+				if (cost.paidBy == person.name)
+					total -= cost.price;
+				if (cost.paidFor.indexOf(person.name) >= 0)
+					total += cost.price / cost.paidFor.length;
+			}
+
+			return total;
+		};
+
 		$scope.costListTemplate = 'static/partials/cost-list.html';
 		$scope.peopleListTemplate = 'static/partials/people-list.html';
 
@@ -118,6 +132,7 @@ controllers.controller('CostSharingController', ['$scope', '$modal',
 						if (!originalCost)
 							return {};
 
+						// TODO: validate price is number
 						var ft = {
 								titleText: originalCost.title,
 								priceText: originalCost.price,
@@ -175,6 +190,31 @@ controllers.controller('PeopleListController', ['$scope', '$modal',
 			$scope.close = function () {
 				$modalInstance.dismiss('cancel');
 			};
+		};
+
+		var getClearPerson = function() {
+			var minOwed = Number.MAX_VALUE;
+			var clearPerson = '';
+
+			// TODO: consider caching this value and updating on cost save
+			for (var i=0; i<$scope.people.length; ++i) {
+				var person = $scope.people[i];
+				var amountOwed = $scope.getCostTotalForPerson(person);
+				if (amountOwed < minOwed) {
+					minOwed = amountOwed;
+					clearPerson = person.name;
+				}
+			}
+
+			return clearPerson;
+		}
+
+		$scope.isClearPerson = function(person) {
+			return getClearPerson() == person.name;
+		}
+
+		$scope.printCostTotalForPerson = function(person) {
+			return $scope.getCostTotalForPerson(person).toFixed(2);
 		};
 
 		$scope.addPerson = function() {

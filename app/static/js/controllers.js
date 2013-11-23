@@ -5,8 +5,16 @@
 angular.module('triplyApp.controllers', []);
 var controllers = angular.module('triplyApp.controllers');
 
-controllers.controller('CostSharingController', ['$scope', '$modal',
-	function CostSharingController($scope, $modal) {
+controllers.controller('CostSharingController', ['$scope', '$modal', 'angularFire',
+	function CostSharingController($scope, $modal, angularFire) {
+
+		var peopleUrl = new Firebase('https://triply.firebaseio.com/costs/people');
+		$scope.people = [];
+		angularFire(peopleUrl, $scope, 'people');
+
+		var costsUrl = new Firebase('https://triply.firebaseio.com/costs/costs');
+		$scope.costs = [];
+		angularFire(costsUrl, $scope, 'costs');
 
 		// values declared on this scope will be accessible on the scopes of all child controllers
 		// (child controllers are controllers for all subsections of the cost_sharing page, 
@@ -17,15 +25,15 @@ controllers.controller('CostSharingController', ['$scope', '$modal',
 			$scope.people.sort(comparePeople);
 		}
 
-		$scope.people = [
+		/*$scope.people = [
 			{ name: 'Craig' },
 			{ name: 'Xiaoyi' },
 			{ name: 'Jim' },
 			{ name: 'Wendy' },
 			{ name: 'Ankur' },
 			{ name: 'Alex' },
-		];
-		sortPeople();
+		];*/
+		//sortPeople();
 
 		$scope.getEveryone = function() {
 			var allPeeps = [];
@@ -40,7 +48,7 @@ controllers.controller('CostSharingController', ['$scope', '$modal',
 			sortPeople();
 		};
 
-		$scope.costs = [
+		/*$scope.costs = [
 			{
 				title: 'Food', price: 100, paidBy: 'Craig',
 				paidFor: $scope.getEveryone()
@@ -53,7 +61,7 @@ controllers.controller('CostSharingController', ['$scope', '$modal',
 				title: 'Hotel', price: 1000, paidBy: 'Craig',
 				paidFor: $scope.getEveryone()
 			}
-		];
+		];*/
 
 		$scope.getCostTotalForPerson = function(person) {
 			// TODO: consider caching this value and updating on cost save

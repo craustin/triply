@@ -7,9 +7,15 @@ angular.module('triplyApp', [
 	'triplyApp.services',
 	'triplyApp.directives',
 	'triplyApp.controllers',
-	'ui.bootstrap'
+	'ui.bootstrap',
+	'firebase'
 ]).
 config(['$routeProvider', function($routeProvider) {
-	$routeProvider.when('/share-costs', {templateUrl: 'static/partials/cost_sharing.html', controller: 'CostSharingController'});
-	$routeProvider.otherwise({redirectTo: '/share-costs'});
+	$routeProvider.when('/', {
+		templateUrl: 'static/partials/cost_sharing.html',
+		controller: 'CostSharingController'
+	});
+	$routeProvider.otherwise({
+		redirectTo: '/'
+	});
 }]);

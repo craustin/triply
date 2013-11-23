@@ -25,16 +25,6 @@ controllers.controller('CostSharingController', ['$scope', '$modal', 'angularFir
 			$scope.people.sort(comparePeople);
 		}
 
-		/*$scope.people = [
-			{ name: 'Craig' },
-			{ name: 'Xiaoyi' },
-			{ name: 'Jim' },
-			{ name: 'Wendy' },
-			{ name: 'Ankur' },
-			{ name: 'Alex' },
-		];*/
-		//sortPeople();
-
 		$scope.getEveryone = function() {
 			var allPeeps = [];
 			for (var i=0; i<$scope.people.length; ++ i)
@@ -47,21 +37,6 @@ controllers.controller('CostSharingController', ['$scope', '$modal', 'angularFir
 			$scope.people.push(person);
 			sortPeople();
 		};
-
-		/*$scope.costs = [
-			{
-				title: 'Food', price: 100, paidBy: 'Craig',
-				paidFor: $scope.getEveryone()
-			},
-			{
-				title: 'Gas', price: 200.10, paidBy: 'Jim',
-				paidFor: [ 'Craig', 'Xiaoyi' ]
-			},
-			{
-				title: 'Hotel', price: 1000, paidBy: 'Craig',
-				paidFor: $scope.getEveryone()
-			}
-		];*/
 
 		$scope.getCostTotalForPerson = function(person) {
 			// TODO: consider caching this value and updating on cost save

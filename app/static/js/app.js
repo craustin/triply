@@ -11,11 +11,16 @@ angular.module('triplyApp', [
 	'firebase'
 ]).
 config(['$routeProvider', function($routeProvider) {
-	$routeProvider.when('/', {
-		templateUrl: 'static/partials/cost_sharing.html',
-		controller: 'CostSharingController'
-	});
-	$routeProvider.otherwise({
-		redirectTo: '/'
-	});
+	$routeProvider.
+		when('/costs/:tripId', {
+			templateUrl: 'static/partials/cost_sharing.html',
+			controller: 'CostSharingController'
+		}).
+		when('/', {
+			templateUrl: 'static/partials/new_trip_costs.html',
+			controller: 'NewTripCostsController'
+		}).
+		otherwise({
+			redirectTo: '/'
+		});
 }]);

@@ -5,16 +5,18 @@
 angular.module('triplyApp.controllers', []);
 var controllers = angular.module('triplyApp.controllers');
 
-controllers.controller('CostSharingController', ['$scope', '$modal', 'angularFire',
-	function CostSharingController($scope, $modal, angularFire) {
+controllers.controller('CostSharingController', ['$scope', '$routeParams', '$modal', '$q', 'angularFire',
+	function CostSharingController($scope, $routeParams, $modal, $q, angularFire) {
 
-		var peopleUrl = new Firebase('https://triply.firebaseio.com/costs/people');
+		var urlPeople = new Firebase('https://triply.firebaseio.com/costs/' + $routeParams.tripId + '/people');
 		$scope.people = [];
-		angularFire(peopleUrl, $scope, 'people');
-
-		var costsUrl = new Firebase('https://triply.firebaseio.com/costs/costs');
+		var peoplePromise = angularFire(urlPeople, $scope, 'people')
+		
+		var urlCosts = new Firebase('https://triply.firebaseio.com/costs/' + $routeParams.tripId + '/costs');
 		$scope.costs = [];
-		angularFire(costsUrl, $scope, 'costs');
+		var costsPromise = angularFire(urlCosts, $scope, 'costs')
+		
+		$q.all([peoplePromise, costsPromise]).then(function() {
 
 		// values declared on this scope will be accessible on the scopes of all child controllers
 		// (child controllers are controllers for all subsections of the cost_sharing page, 
@@ -163,6 +165,8 @@ controllers.controller('CostSharingController', ['$scope', '$modal', 'angularFir
 
 			return pfs;
 		};
+		
+		});
 
 	}]);
 
@@ -220,5 +224,13 @@ controllers.controller('PeopleListController', ['$scope', '$modal',
 			modalInstance.result.then(function (name) {
 				$scope.savePerson({ name: name });
 			});
+		};
+	}]);
+
+controllers.controller('NewTripCostsController', ['$scope', '$modal', '$location',
+	function NewTripCostsController($scope, $modal, $location) {
+		$scope.newTrip = function() {
+			var randomTripId = Math.random().toString(16).substr(2);
+			$location.path('costs/' + randomTripId);
 		};
 	}]);

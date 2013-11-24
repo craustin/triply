@@ -1,24 +1,25 @@
 <div>
-<form ng-submit="create(formText)">
+<form name="form" novalidate ng-submit="create(formText)">
 
 	<div class="modal-header">
 		<button type="button" class="close" ng-click="close()"><i class="icon-remove"></i></button>
-		<input type="text" ng-model="formText.titleText" placeholder="Hotel" autofocus/>
+		<input type="text" ng-model="formText.titleText" required placeholder="Hotel" autofocus/>
 		<br/>
 	</div>
 
 	<div class="modal-body">
-		<input type="text" ng-model="formText.priceText" placeholder="$500" />
+		$<input type="text" ng-model="formText.priceText" name="price" ng-pattern="/^[0-9]+$/" required placeholder="500" />
+		<span ng-show="form.price.$error.pattern">please enter a number</span>
 		<br/>
-		<input type="text" ng-model="formText.paidByText" placeholder="Craig" />
+		<input type="text" ng-model="formText.paidByText" required placeholder="Craig" />
 		<br/>
-		<input type="text" ng-model="formText.paidForText" placeholder="Craig, Xiaoyi, Jim, Wendy" />
+		<input type="text" ng-model="formText.paidForText" required placeholder="Craig, Xiaoyi, Jim, Wendy" />
 		<br/>
 	</div>
 
 	<div class="modal-footer">
 		<button type="button" class="btn" ng-click="close()">Close</button>
-		<input type="submit" class="btn btn-primary" value="Save Changes" />
+		<input type="submit" class="btn btn-primary" value="Save Changes" ng-disabled="form.$invalid || !form.$dirty" />
 	</div>
 
 </form>

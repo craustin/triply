@@ -9,7 +9,8 @@ angular.module('triplyApp', [
 	'triplyApp.controllers',
 	'ui.bootstrap',
 	'firebase',
-	'xeditable'
+	'xeditable',
+	'LocalStorageModule'
 ]).
 config(['$routeProvider', function($routeProvider) {
 	$routeProvider.

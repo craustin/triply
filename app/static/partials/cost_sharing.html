@@ -14,11 +14,10 @@
 					<li class="dropdown active">
 						<a href="#" class="class dropdown-toggle" data-toggle="dropdown">Trips <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-						<li class="active"><a href="#">Zubehaus</a></li>
-						<li><a href="#">Derby</a></li>
-						<li><a href="#">Mexico</a></li>
-						<li><a href="#">New Orleans</a></li>
-					</ul>
+						<li class="active"><a href>{{ tripName || "No Name" }}</a></li>
+						<li ng-repeat="trip in tripMRU"><a href='#/costs/{{ trip.tripId }}'>{{ trip.tripName || "No Name" }}</a></li>
+						</ul>
+					</li>
 				</ul>
 			</div>
 		</div>

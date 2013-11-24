@@ -5,26 +5,50 @@
 angular.module('triplyApp.controllers', []);
 var controllers = angular.module('triplyApp.controllers');
 
-controllers.controller('CostSharingController', ['$scope', '$routeParams', '$modal', '$q', 'angularFire',
-	function CostSharingController($scope, $routeParams, $modal, $q, angularFire) {
+controllers.controller('CostSharingController', ['$scope', '$routeParams', '$modal', '$q', 'localStorageService', 'angularFire',
+	function CostSharingController($scope, $routeParams, $modal, $q, localStorageService, angularFire) {
+		
+		var tripId = $routeParams.tripId;
 
-		var urlPeople = new Firebase('https://triply.firebaseio.com/costs/' + $routeParams.tripId + '/people');
+		var urlPeople = new Firebase('https://triply.firebaseio.com/costs/' + tripId + '/people');
 		$scope.people = [];
 		var peoplePromise = angularFire(urlPeople, $scope, 'people')
 		
-		var urlCosts = new Firebase('https://triply.firebaseio.com/costs/' + $routeParams.tripId + '/costs');
+		var urlCosts = new Firebase('https://triply.firebaseio.com/costs/' + tripId + '/costs');
 		$scope.costs = [];
 		var costsPromise = angularFire(urlCosts, $scope, 'costs')
 		
-		var urlTripName = new Firebase('https://triply.firebaseio.com/costs/' + $routeParams.tripId + '/tripName');
+		var urlTripName = new Firebase('https://triply.firebaseio.com/costs/' + tripId + '/tripName');
 		$scope.tripName = '';
 		var tripNamePromise = angularFire(urlTripName, $scope, 'tripName')
-		
+
 		$q.all([peoplePromise, costsPromise, tripNamePromise]).then(function() {
 
 		// values declared on this scope will be accessible on the scopes of all child controllers
 		// (child controllers are controllers for all subsections of the cost_sharing page, 
 		// including those included via ng-include)
+
+		// trip MRU in header
+		var MAX_MRU_ITEMS = 5;
+		var tripMRUKey = 'costs.tripMRU';
+		var rawTripMRU = localStorageService.get(tripMRUKey);
+		var tripMRU = [];
+		if (rawTripMRU) {
+			tripMRU = $.parseJSON(rawTripMRU);
+		}
+		var idx = tripMRU.indexOf(_.findWhere(tripMRU, {'tripId': tripId}));
+		if (idx != -1) {
+			tripMRU.splice(idx, 1);
+		}
+		tripMRU.push({'tripId': tripId, 'tripName': $scope.tripName});
+		if (tripMRU.length > MAX_MRU_ITEMS) // max MRU items
+			tripMRU.shift();
+		localStorageService.add(tripMRUKey, JSON.stringify(tripMRU));
+
+		// prepare bindable list for MRU UI
+		tripMRU.reverse();
+		tripMRU.splice(0, 1);
+		$scope.tripMRU = tripMRU;
 
 		var sortPeople = function() {
 			var comparePeople = function(a, b) { return a.name > b.name; }

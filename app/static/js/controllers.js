@@ -28,27 +28,29 @@ controllers.controller('CostSharingController', ['$scope', '$routeParams', '$mod
 		// (child controllers are controllers for all subsections of the cost_sharing page, 
 		// including those included via ng-include)
 
-		// trip MRU in header
-		var MAX_MRU_ITEMS = 5;
-		var tripMRUKey = 'costs.tripMRU';
-		var rawTripMRU = localStorageService.get(tripMRUKey);
-		var tripMRU = [];
-		if (rawTripMRU) {
-			tripMRU = $.parseJSON(rawTripMRU);
-		}
-		var idx = tripMRU.indexOf(_.findWhere(tripMRU, {'tripId': tripId}));
-		if (idx != -1) {
-			tripMRU.splice(idx, 1);
-		}
-		tripMRU.push({'tripId': tripId, 'tripName': $scope.tripName});
-		if (tripMRU.length > MAX_MRU_ITEMS) // max MRU items
-			tripMRU.shift();
-		localStorageService.add(tripMRUKey, JSON.stringify(tripMRU));
+		$scope.$watch('tripName', function(newVal, oldVal) {
+			// trip MRU in header
+			var MAX_MRU_ITEMS = 5;
+			var tripMRUKey = 'costs.tripMRU';
+			var rawTripMRU = localStorageService.get(tripMRUKey);
+			var tripMRU = [];
+			if (rawTripMRU) {
+				tripMRU = $.parseJSON(rawTripMRU);
+			}
+			var idx = tripMRU.indexOf(_.findWhere(tripMRU, {'tripId': tripId}));
+			if (idx != -1) {
+				tripMRU.splice(idx, 1);
+			}
+			tripMRU.push({'tripId': tripId, 'tripName': $scope.tripName});
+			if (tripMRU.length > MAX_MRU_ITEMS) // max MRU items
+				tripMRU.shift();
+			localStorageService.add(tripMRUKey, JSON.stringify(tripMRU));
 
-		// prepare bindable list for MRU UI
-		tripMRU.reverse();
-		tripMRU.splice(0, 1);
-		$scope.tripMRU = tripMRU;
+			// prepare bindable list for MRU UI
+			tripMRU.reverse();
+			tripMRU.splice(0, 1);
+			$scope.tripMRU = tripMRU;
+		});
 
 		var sortPeople = function() {
 			var comparePeople = function(a, b) { return a.name > b.name; }

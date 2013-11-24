@@ -7,10 +7,10 @@
 			<span class="icon-bar"></span>
 			</button>
 			<a class="brand" href="#">trip.ly costs</a>
-			<div class="nav-collapse collapse">
+			<div class="nav-collapse collapse" ng-controller="NewTripCostsController">
 				<ul class="nav">
 					<li><a href="#">Home</a></li>
-					<li><a href="#new">New Trip</a></li>
+					<li><a href ng-click="newTrip()">New Trip</a></li>
 					<li class="dropdown active">
 						<a href="#" class="class dropdown-toggle" data-toggle="dropdown">Trips <b class="caret"></b></a>
 						<ul class="dropdown-menu">
@@ -18,13 +18,8 @@
 						<li><a href="#">Derby</a></li>
 						<li><a href="#">Mexico</a></li>
 						<li><a href="#">New Orleans</a></li>
-						<li class="divider"></li>
-						<li><a href="#">More Trips...</a></li>
 					</ul>
 				</ul>
-				<p class="navbar-text pull-right">
-					<a href="#" class="navbar-link"><strong><i class="icon-user icon-white" style="margin-top: 2px"></i> Craig</strong></a>
-				</p>
 			</div>
 		</div>
 	</div>
@@ -33,7 +28,7 @@
 	<div class="row-fluid">
 		<div class="span10">
 			<div class="well" style="position:relative">
-				<i class="icon-road"></i> <strong><a href="#" id="trip-name" data-type="text" data-original-title="Enter Trip Name"></a></strong>
+				<i class="icon-road"></i> <strong><a href editable-text="tripName">{{ tripName || "Trip Name" }}</a></strong>
 				<div class="btn-group" style="position:absolute; right:17px; top:17px">
 					<a class="btn btn-primary" role="button" href ng-click="addCost()">
 						<i class="icon-pencil icon-white"></i>&nbsp; Add Cost

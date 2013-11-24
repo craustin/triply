@@ -7,7 +7,7 @@
 	</a>
 	<div style='margin-left:25px; margin-top:10px'>
 	<bl>
-		<li ng-repeat="(tripId, trip) in trips"><a href='#/costs/{{tripId}}'>{{tripId}}</a></li>
+		<li ng-repeat="(tripId, trip) in trips"><a href='#/costs/{{tripId}}'>{{ trip.tripName || "No Name" }}</a></li>
 	</bl>
 	</div>
 </div>

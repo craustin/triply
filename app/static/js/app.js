@@ -8,7 +8,8 @@ angular.module('triplyApp', [
 	'triplyApp.directives',
 	'triplyApp.controllers',
 	'ui.bootstrap',
-	'firebase'
+	'firebase',
+	'xeditable'
 ]).
 config(['$routeProvider', function($routeProvider) {
 	$routeProvider.

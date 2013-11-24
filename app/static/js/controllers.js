@@ -16,7 +16,11 @@ controllers.controller('CostSharingController', ['$scope', '$routeParams', '$mod
 		$scope.costs = [];
 		var costsPromise = angularFire(urlCosts, $scope, 'costs')
 		
-		$q.all([peoplePromise, costsPromise]).then(function() {
+		var urlTripName = new Firebase('https://triply.firebaseio.com/costs/' + $routeParams.tripId + '/tripName');
+		$scope.tripName = '';
+		var tripNamePromise = angularFire(urlTripName, $scope, 'tripName')
+		
+		$q.all([peoplePromise, costsPromise, tripNamePromise]).then(function() {
 
 		// values declared on this scope will be accessible on the scopes of all child controllers
 		// (child controllers are controllers for all subsections of the cost_sharing page, 

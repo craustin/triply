@@ -1,21 +1,37 @@
 <div class="well sidebar-nav" ng-controller="PeopleListController">
 
 	<ul class="nav nav-list">
-		<li class="nav-header">Participants</li>
-		<li ng-repeat="person in people">
+		<li class="nav-header" ng-show="people.length">Owes {{ getClearPerson() }}</li>
+		<li ng-repeat="person in owesPeople = (people | peopleFilter:this:'+')">
 			<table style="width:100%">
 				<tbody>
 					<tr>
 						<td width="*">
-							{{person.name}} <i class="icon-star" ng-if="isClearPerson(person)"></i>
+							{{ person.name }}
 						</td>
-						<td ng-style="{'text-align': 'right', 'color': isClearPerson(person) ? '#CCCCCC' : '#000000'}">
-							{{printCostTotalForPerson(person)}}
+						<td ng-style="{'text-align': 'right'}">
+							$ {{ printCostTotalForPerson(person) }}
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</li>
+		<li class="nav-header" ng-hide="!owedPeople.length">{{ getClearPerson() }} Owes</li>
+		<li ng-repeat="person in owedPeople = (people | peopleFilter:this:'-')">
+			<table style="width:100%">
+				<tbody>
+					<tr>
+						<td width="*">
+							{{ person.name }}
+						</td>
+						<td ng-style="{'text-align': 'right'}">
+							$ {{ printCostTotalForPerson(person) }}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</li>
+		<li class="nav-header" ng-show="!people.length">No Participants</li>
 		<li class="divider"></li>
 		<li>
 			<a role="button" href ng-click="addPerson()"><i class="icon-user"></i> Add Person</a>

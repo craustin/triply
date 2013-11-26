@@ -15,7 +15,7 @@ controllers.controller('PeopleListController', ['$scope', '$modal',
 			};
 		};
 
-		var getClearPerson = function() {
+		$scope.getClearPerson = function() {
 			var minOwed = Number.MAX_VALUE;
 			var clearPerson = '';
 
@@ -30,14 +30,10 @@ controllers.controller('PeopleListController', ['$scope', '$modal',
 			}
 
 			return clearPerson;
-		}
-
-		$scope.isClearPerson = function(person) {
-			return getClearPerson() == person.name;
-		}
+		};
 
 		$scope.printCostTotalForPerson = function(person) {
-			return $scope.getCostTotalForPerson(person).toFixed(2);
+			return Math.abs($scope.getCostTotalForPerson(person)).toFixed(2);
 		};
 
 		$scope.addPerson = function() {

@@ -1,5 +1,6 @@
 <div ng-controller="CostListController">
 
+	<!-- TODO: nested fluid row with spans -->
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
@@ -13,11 +14,40 @@
 
 		<tbody>
 			<tr ng-repeat="cost in costs">
-				<td>{{cost.title}}</td>
-				<td>{{cost.price}}</td>
-				<td>{{cost.paidBy}}</td>
-				<td>{{printPaidFor(cost)}}</td>
+				<td ng-click="rowform.$show()">
+					<span editable-text="cost.title" e-name="titleText" e-form="rowform" e-required>
+						{{ cost.title || 'Title' }}
+					</span>
+				</td>
 				<td>
+					<span editable-text="cost.price" e-name="priceText" e-form="rowform" e-required>
+						{{ cost.price || 'Cost' }}
+					</span>
+				</td>
+				<td>
+					<span editable-text="cost.paidBy" e-name="paidByText" e-form="rowform" e-required>
+						{{ cost.paidBy || 'Paid By' }}
+					</span>
+				</td>
+				<td>
+					<span editable-text="printPaidFor(cost, true)" e-name="paidForText" e-form="rowform" e-required>
+						{{ printPaidFor(cost) }}
+					</span>
+				</td>
+				<td>
+					<form editable-form name="rowform" onbeforesave="beforeCostSave($index, $data)"
+						ng-show="rowform.$visible" class="form-buttons form-inline">
+						<button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+							save
+						</button>
+						<button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()"
+							class="btn btn-default">
+							cancel
+						</button>
+					</form>
+					<div class="buttons" ng-show="!rowform.$visible">
+					<button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+					</div>
 					<a role="button" href ng-click="editCost($index, cost)"><i class="icon-pencil"></i></a>
 				</td>
 			</tr>

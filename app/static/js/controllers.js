@@ -104,35 +104,15 @@ controllers.controller('CostSharingController', ['$scope', '$routeParams', '$mod
 			$scope.editCost(-1);
 		};
 
-		$scope.editCost = function(index, originalCost) {
+		$scope.processCostForm = function(index, formText) {
 
 			var convertToCost = function(formText) {
-
-				var addPersonIfNew = function(personName) {
-					if ($scope.getEveryone().indexOf(personName) < 0)
-						$scope.savePerson({ name: personName });
-				}
 
 				var parsePaidBy = function(paidByText) {
 					var personName = jQuery.trim(paidByText);
 					addPersonIfNew(personName);
 					return personName;
 				}
-
-				var parsePaidFor = function(paidForText) {
-					var peeps = paidForText.split(',');
-					for (var i=0; i<peeps.length; ++i)
-						peeps[i] = jQuery.trim(peeps[i]);
-					peeps.sort();
-
-					if (peeps.length == 1 && peeps[0].toLowerCase() == 'everyone')
-						return $scope.getEveryone();
-
-					for (var i=0; i<peeps.length; ++i)
-						addPersonIfNew(peeps[i]);
-
-					return peeps;
-				};
 
 				var newCost = {};
 				newCost.title = formText.titleText;
@@ -142,12 +122,18 @@ controllers.controller('CostSharingController', ['$scope', '$routeParams', '$mod
 				return newCost;
 			};
 
-			var saveCost = function(cost) {
+			var saveCost = function(cost, index) {
 				if (index >= 0)
 					$scope.costs[index] = cost;
 				else
 					$scope.costs.push(cost);
 			};
+
+			var newCost = convertToCost(formText);
+			saveCost(newCost, index);
+		};
+
+		$scope.editCost = function(index, originalCost) {
 
 			var modalInstance = $modal.open({
 				templateUrl: 'static/partials/edit-cost-modal.html',
@@ -170,9 +156,32 @@ controllers.controller('CostSharingController', ['$scope', '$routeParams', '$mod
 			});
 
 			modalInstance.result.then(function (formText) {
-				var newCost = convertToCost(formText);
-				saveCost(newCost);
+				$scope.processCostForm(index, formText);
 			});
+		};
+
+		var addPersonIfNew = function(personName) {
+			if ($scope.getEveryone().indexOf(personName) < 0)
+				$scope.savePerson({ name: personName });
+		}
+
+		var parsePaidFor = function(paidForText) {
+			if (!paidForText)
+				return [];
+
+			var peeps = paidForText.split(',');
+			for (var i=0; i<peeps.length; ++i)
+				peeps[i] = jQuery.trim(peeps[i]);
+			peeps.sort();
+
+			if (peeps.length == 1 && peeps[0].toLowerCase() == 'everyone')
+				return $scope.getEveryone();
+
+			for (var i=0; i<peeps.length; ++i)
+				if (peeps[i].length > 0)
+					addPersonIfNew(peeps[i]);
+
+			return peeps;
 		};
 
 		$scope.printPaidFor = function(cost, expandPaidFor) {
@@ -195,7 +204,7 @@ controllers.controller('CostSharingController', ['$scope', '$routeParams', '$mod
 
 			return pfs;
 		};
-		
+
 		});
 
 	}]);

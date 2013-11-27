@@ -87,6 +87,8 @@ controllers.controller('CostSharingController', ['$scope', '$routeParams', '$mod
 		$scope.costListTemplate = 'static/partials/cost-list.html';
 		$scope.peopleListTemplate = 'static/partials/people-list.html';
 
+		$scope.pricePattern = new RegExp("^[0-9]+(\.[0-9][0-9])?$");
+
 		var EditCostModalController = function ($scope, $modalInstance, formText) {
 
 			$scope.formText = formText;
@@ -133,6 +135,7 @@ controllers.controller('CostSharingController', ['$scope', '$routeParams', '$mod
 			saveCost(newCost, index);
 		};
 
+		// TODO: once Add Cost creates a new row instead of launching the modal dialog, we can probably remove this code
 		$scope.editCost = function(index, originalCost) {
 
 			var modalInstance = $modal.open({
@@ -140,16 +143,16 @@ controllers.controller('CostSharingController', ['$scope', '$routeParams', '$mod
 				controller: EditCostModalController,
 				resolve: {
 					formText: function() {
-						if (!originalCost)
-							return {};
-
-						// TODO: validate price is number
 						var ft = {
-								titleText: originalCost.title,
-								priceText: originalCost.price,
-								paidByText: originalCost.paidBy,
-								paidForText: $scope.printPaidFor(originalCost, true)
+								pricePattern: $scope.pricePattern,
 							};
+
+						if (originalCost) {
+							ft.titleText = originalCost.title;
+							ft.priceText = originalCost.price;
+							ft.paidByText = originalCost.paidBy;
+							ft.paidForText = $scope.printPaidFor(originalCost, true);
+						}
 						return ft;
 					}
 				}

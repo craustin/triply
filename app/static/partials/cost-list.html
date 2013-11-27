@@ -20,7 +20,8 @@
 					</span>
 				</td>
 				<td>
-					<span editable-text="cost.price" e-name="priceText" e-form="rowform" e-required>
+					<span editable-text="cost.price" e-name="priceText" e-form="rowform" e-required
+						onbeforesave="beforePriceSave($data)">
 						{{ cost.price || 'Cost' }}
 					</span>
 				</td>
@@ -46,9 +47,8 @@
 						</button>
 					</form>
 					<div class="buttons" ng-show="!rowform.$visible">
-					<button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+					<a role="button" href ng-click="rowform.$show()"><i class="icon-pencil"></i></a>
 					</div>
-					<a role="button" href ng-click="editCost($index, cost)"><i class="icon-pencil"></i></a>
 				</td>
 			</tr>
 		</tbody>

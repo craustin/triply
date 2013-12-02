@@ -15,11 +15,11 @@ angular.module('triplyApp', [
 config(['$routeProvider', function($routeProvider) {
 	$routeProvider.
 		when('/costs/:tripId', {
-			templateUrl: 'static/partials/cost_sharing.html',
+			templateUrl: 'static/partials/cost-sharing.html',
 			controller: 'CostSharingController'
 		}).
 		when('/', {
-			templateUrl: 'static/partials/new_trip_costs.html',
+			templateUrl: 'static/partials/new-trip-costs.html',
 			controller: 'NewTripCostsController'
 		}).
 		otherwise({

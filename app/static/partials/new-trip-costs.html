@@ -1,13 +1,23 @@
 <div ng-controller="NewTripCostsController" style='margin-left:50px'>
 	<b>Trip.ly</b>
 	<hr/>
-	Cost Sharing
-	<a class="btn btn-primary" role="button" href ng-click="newTrip()" style='margin-left:25px'>
+	Ideas
+	<a class="btn btn-primary" role="button" href ng-click="newTripIdeas()" style='margin-left:25px'>
 		<i class="icon-pencil icon-white"></i>&nbsp; New Trip
 	</a>
 	<div style='margin-left:25px; margin-top:10px'>
 	<bl>
-		<li ng-repeat="(tripId, trip) in trips"><a href='#/costs/{{tripId}}'>{{ trip.tripName || "No Name" }}</a></li>
+		<li ng-repeat="(tripId, trip) in tripsIdeas"><a href='#/ideas/{{tripId}}'>{{ trip.tripName || "No Name" }}</a></li>
+	</bl>
+	</div>
+	<hr/>
+	Cost Sharing
+	<a class="btn btn-primary" role="button" href ng-click="newTripCosts()" style='margin-left:25px'>
+		<i class="icon-pencil icon-white"></i>&nbsp; New Trip
+	</a>
+	<div style='margin-left:25px; margin-top:10px'>
+	<bl>
+		<li ng-repeat="(tripId, trip) in tripsCosts"><a href='#/costs/{{tripId}}'>{{ trip.tripName || "No Name" }}</a></li>
 	</bl>
 	</div>
 </div>

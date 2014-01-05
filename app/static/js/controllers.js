@@ -5,6 +5,17 @@
 angular.module('triplyApp.controllers', []);
 var controllers = angular.module('triplyApp.controllers');
 
+controllers.controller('TripIdeasController', ['$scope', '$routeParams', 'angularFire',
+	function TripIdeasController($scope, $routeParams, angularFire) {
+
+		var tripId = $routeParams.tripId;
+
+		var urlTripName = new Firebase('https://triply.firebaseio.com/ideas/' + tripId + '/tripName');
+		$scope.tripName = '';
+		angularFire(urlTripName, $scope, 'tripName')
+
+	}]);
+
 controllers.controller('CostSharingController', ['$scope', '$routeParams', '$modal', '$q', 'localStorageService', 'angularFire',
 	function CostSharingController($scope, $routeParams, $modal, $q, localStorageService, angularFire) {
 		

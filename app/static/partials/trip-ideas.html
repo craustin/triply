@@ -1,0 +1,33 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+			<a class="brand" href="#">trip.ly ideas</a>
+			<div class="nav-collapse collapse" ng-controller="NewTripCostsController">
+				<ul class="nav">
+					<li><a href="#">Home</a></li>
+					<li><a href ng-click="newTripIdeas()">New Trip</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span10">
+			<div class="well" style="position:relative">
+				<i class="icon-road"></i> <strong><a href editable-text="tripName">{{ tripName || "Trip Name" }}</a></strong>
+			</div>
+			<strong>Ideas</strong><br/>(First version could be a simple message board? Comments/Links and sub-comments? Could be a partitioned discussion board with (optional) sections like "When", "Where", "What"?)
+			<!--<div ng-include="ideaListTemplate" />-->
+		</div>
+		<div class="span2">
+			<strong>People List</strong><br/>(Committed, Interested, Watching)
+			<!--<div ng-include="peopleListTemplate" />-->
+		</div>
+	</div>
+</div>

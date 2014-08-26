@@ -5,6 +5,18 @@
 angular.module('triplyApp.controllers', []);
 var controllers = angular.module('triplyApp.controllers');
 
+controllers.controller('TripTimelineController', ['$scope', '$routeParams', 'angularFire',
+	function TripTimelineController($scope, $routeParams, angularFire) {
+
+		var tripId = $routeParams.tripId;
+
+		var urlTripName = new Firebase('https://triply.firebaseio.com/timeline/' + tripId + '/tripName');
+		$scope.tripName = '';
+		angularFire(urlTripName, $scope, 'tripName');
+
+		$scope.days = ['Day 1', 'Day 2', 'Day 3'];
+	}]);
+
 controllers.controller('TripIdeasController', ['$scope', '$routeParams', 'angularFire',
 	function TripIdeasController($scope, $routeParams, angularFire) {
 

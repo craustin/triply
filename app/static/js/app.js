@@ -14,6 +14,10 @@ angular.module('triplyApp', [
 ]).
 config(['$routeProvider', function($routeProvider) {
 	$routeProvider.
+		when('/timeline/:tripId', {
+			templateUrl: 'static/partials/trip-timeline.html',
+			controller: 'TripTimelineController'
+		}).
 		when('/ideas/:tripId', {
 			templateUrl: 'static/partials/trip-ideas.html',
 			controller: 'TripIdeasController'

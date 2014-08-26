@@ -1,6 +1,16 @@
 <div ng-controller="NewTripCostsController" style='margin-left:50px'>
 	<b>Trip.ly</b>
 	<hr/>
+	Timeline
+	<a class="btn btn-primary" role="button" href ng-click="newTripTimeline()" style='margin-left:25px'>
+		<i class="icon-pencil icon-white"></i>&nbsp; New Trip
+	</a>
+	<div style='margin-left:25px; margin-top:10px'>
+	<bl>
+		<li ng-repeat="(tripId, trip) in tripsTimeline"><a href='#/timeline/{{tripId}}'>{{ trip.tripName || "No Name" }}</a></li>
+	</bl>
+	</div>
+	<hr/>
 	Ideas
 	<a class="btn btn-primary" role="button" href ng-click="newTripIdeas()" style='margin-left:25px'>
 		<i class="icon-pencil icon-white"></i>&nbsp; New Trip

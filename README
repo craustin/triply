@@ -14,3 +14,5 @@ use the following to update the heroku app:
 2) git add [changed files]
 git commit -m "[commit message]"
 git push heroku master
+
+[test change to make sure repo is cloned correctly on my new computer]

@@ -14,7 +14,33 @@ controllers.controller('TripTimelineController', ['$scope', '$routeParams', 'ang
 		$scope.tripName = '';
 		angularFire(urlTripName, $scope, 'tripName');
 
-		$scope.days = ['Day 1', 'Day 2', 'Day 3'];
+		var makeDay = function(title) {
+			return {title:title, activities:['thing1','thing2']};
+		};
+
+		$scope.days = [
+				makeDay('Day 1'),
+				makeDay('Day 2'),
+				makeDay('Day 3')
+			];
+
+		$scope.addDayLeft = function() {
+			var newDay = makeDay(Math.random().toString(16).substr(2));
+			$scope.days.unshift(newDay);
+		}
+
+		$scope.removeDayLeft = function() {
+			$scope.days.shift();
+		}
+
+		$scope.addDayRight = function() {
+			var newDay = makeDay(Math.random().toString(16).substr(2));
+			$scope.days.push(newDay);
+		}
+
+		$scope.removeDayRight = function() {
+			$scope.days.pop();
+		}
 	}]);
 
 controllers.controller('TripIdeasController', ['$scope', '$routeParams', 'angularFire',

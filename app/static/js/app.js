@@ -27,8 +27,8 @@ config(['$routeProvider', function($routeProvider) {
 			controller: 'CostSharingController'
 		}).
 		when('/', {
-			templateUrl: 'static/partials/new-trip-costs.html',
-			controller: 'NewTripCostsController'
+			templateUrl: 'static/partials/launchpad.html',
+			controller: 'LaunchpadController'
 		}).
 		otherwise({
 			redirectTo: '/'

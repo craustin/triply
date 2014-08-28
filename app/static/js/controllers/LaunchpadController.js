@@ -1,8 +1,8 @@
 
 var controllers = angular.module('triplyApp.controllers');
 
-controllers.controller('NewTripCostsController', ['$scope', '$modal', '$location', 'angularFire',
-	function NewTripCostsController($scope, $modal, $location, angularFire) {
+controllers.controller('LaunchpadController', ['$scope', '$modal', '$location', 'angularFire',
+	function LaunchpadController($scope, $modal, $location, angularFire) {
 		// TODO(AustinC): we're getting too much data, here. we only need the keys.
 
 		var urlTimeline = new Firebase('https://triply.firebaseio.com/timeline');

@@ -1,4 +1,5 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
+<!-- ROGTODO: replace nav with lightweight, righ-aligned nav controls (like google.com) -->
+<!-- <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
 			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -7,7 +8,7 @@
 			<span class="icon-bar"></span>
 			</button>
 			<a class="brand" href="#">trip.ly timeline</a>
-			<div class="nav-collapse collapse" ng-controller="NewTripCostsController">
+			<div class="nav-collapse collapse" ng-controller="LaunchpadController">
 				<ul class="nav">
 					<li><a href="#">Home</a></li>
 					<li><a href ng-click="newTripTimeline()">New Trip</a></li>
@@ -16,18 +17,40 @@
 		</div>
 	</div>
 </div>
+ -->
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span10">
 			<div class="well" style="position:relative">
 				<i class="icon-road"></i> <strong><a href editable-text="tripName">{{ tripName || "Trip Name" }}</a></strong>
 			</div>
-			<table border="1">
+			<table>
+				<!-- ROGTODO: use a div with container-fluid or row-fluid class? -->
 				<tr>
-					<td style="width:200px;text-align:center" ng-repeat="day in days">{{ day }}</td>
-				</tr>
-				<tr>
-					<td style="width:200px;height:200px" ng-repeat="day in days"></td>
+					<td>
+						<div>
+							<button style="display:block" ng-click="addDayLeft()">+</button>
+							<button style="display:block" ng-click="removeDayLeft()">-</button>
+						</div>
+					</td>
+					<td>
+						<table border="1">
+							<tr>
+								<td style="width:200px;text-align:center" ng-repeat="day in days">{{ day.title }}</td>
+							</tr>
+							<tr>
+								<td style="width:200px;height:200px" ng-repeat="day in days">
+									<div ng-repeat="activity in day.activities">{{activity}}</div>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<div>
+							<button style="display:block" ng-click="addDayRight()">+</button>
+							<button style="display:block" ng-click="removeDayRight()">-</button>
+						</div>
+					</td>
 				</tr>
 			</table>
 		</div>

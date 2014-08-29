@@ -1,39 +1,16 @@
 <!-- ROGTODO: replace nav with lightweight, righ-aligned nav controls (like google.com) -->
-<!-- <div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="navbar-inner">
-		<div class="container">
-			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			</button>
-			<a class="brand" href="#">trip.ly timeline</a>
-			<div class="nav-collapse collapse" ng-controller="LaunchpadController">
-				<ul class="nav">
-					<li><a href="#">Home</a></li>
-					<li><a href ng-click="newTripTimeline()">New Trip</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
- -->
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span10">
 			<div class="well" style="position:relative">
-<!-- 				<a class="btn btn-primary" role="button" href ng-click="newTripTimeline()" style='display:table; margin:auto'>
-					<i class="icon-pencil icon-white"></i>&nbsp; New Trip
-				</a> -->
-				<div style='display:table; margin:auto'>
-					<i class="icon-road"></i> 
-					<strong>
-						<a href editable-text="tripName">{{ tripName || "Trip Name" }}</a>
-					</strong>
-				</div>
+				<i class="icon-road"></i> 
+				<strong>
+					<a href editable-text="tripName">{{ tripName || "Trip Name" }}</a>
+				</strong>
 			</div>
+			Trip dates: {{days[0].title}} to {{days[days.length-1].title}}
 			<table style="margin: auto;">
-				<!-- ROGTODO: use a div with container-fluid or row-fluid class? -->
+				<!-- ROGTODO: instead of a table, use a div with container-fluid or row-fluid class? -->
 				<tr>
 					<td>
 						<div>

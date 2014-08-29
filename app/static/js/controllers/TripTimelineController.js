@@ -17,7 +17,8 @@ controllers.controller('TripTimelineController', ['$scope', '$routeParams', 'ang
 		}
 
 		var getMonthName = function(date) {
-			var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+			var monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+				'July', 'August', 'September', 'October', 'November', 'December'];
 			var monthIndex = date.getMonth();
 			return monthNames[monthIndex];
 		}

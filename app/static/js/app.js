@@ -30,6 +30,10 @@ config(['$routeProvider', function($routeProvider) {
 			templateUrl: 'static/partials/cost-sharing.html',
 			controller: 'CostSharingController'
 		}).
+		when('/mockups', {
+			templateUrl: 'static/partials/mockups.html',
+			controller: 'MockupsController'
+		}).
 		when('/', {
 			templateUrl: 'static/partials/launchpad.html',
 			controller: 'LaunchpadController'

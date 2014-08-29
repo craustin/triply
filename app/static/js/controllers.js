@@ -5,6 +5,8 @@
 angular.module('triplyApp.controllers', []);
 var controllers = angular.module('triplyApp.controllers');
 
+controllers.controller('MockupsController', ['$scope', function MockupsController($scope) { }]);
+
 controllers.controller('TripTimelineController', ['$scope', '$routeParams', 'angularFire',
 	function TripTimelineController($scope, $routeParams, angularFire) {
 

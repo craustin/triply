@@ -18,6 +18,10 @@ config(['$routeProvider', function($routeProvider) {
 			templateUrl: 'static/partials/trip-timeline.html',
 			controller: 'TripTimelineController'
 		}).
+		when('/timeline', {
+			templateUrl: 'static/partials/new-trip-timeline.html',
+			controller: 'NewTripTimelineController'
+		}).
 		when('/ideas/:tripId', {
 			templateUrl: 'static/partials/trip-ideas.html',
 			controller: 'TripIdeasController'

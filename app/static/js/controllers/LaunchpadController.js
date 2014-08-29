@@ -8,6 +8,7 @@ controllers.controller('LaunchpadController', ['$scope', '$modal', '$location', 
 		var urlTimeline = new Firebase('https://triply.firebaseio.com/timeline');
 		angularFire(urlTimeline, $scope, 'tripsTimeline')
 
+		// ROGTODO: replace this with a function that just takes you to the /timeline page
 		$scope.newTripTimeline = function() {
 			var randomTripId = Math.random().toString(16).substr(2);
 			$location.path('timeline/' + randomTripId);

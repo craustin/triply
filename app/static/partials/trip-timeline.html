@@ -22,15 +22,24 @@
 	<div class="row-fluid">
 		<div class="span10">
 			<div class="well" style="position:relative">
-				<i class="icon-road"></i> <strong><a href editable-text="tripName">{{ tripName || "Trip Name" }}</a></strong>
+<!-- 				<a class="btn btn-primary" role="button" href ng-click="newTripTimeline()" style='display:table; margin:auto'>
+					<i class="icon-pencil icon-white"></i>&nbsp; New Trip
+				</a> -->
+				<div style='display:table; margin:auto'>
+					<i class="icon-road"></i> 
+					<strong>
+						<a href editable-text="tripName">{{ tripName || "Trip Name" }}</a>
+					</strong>
+				</div>
 			</div>
-			<table>
+			<table style="margin: auto;">
 				<!-- ROGTODO: use a div with container-fluid or row-fluid class? -->
 				<tr>
 					<td>
 						<div>
-							<button style="display:block" ng-click="addDayLeft()">+</button>
-							<button style="display:block" ng-click="removeDayLeft()">-</button>
+							<button style="display:block" ng-click="slideBackwardOneDay()"><-</button>
+							<button style="display:block" ng-click="addDayAtStart()">+</button>
+							<button style="display:block" ng-click="removeDayAtStart()">-</button>
 						</div>
 					</td>
 					<td>
@@ -47,8 +56,9 @@
 					</td>
 					<td>
 						<div>
-							<button style="display:block" ng-click="addDayRight()">+</button>
-							<button style="display:block" ng-click="removeDayRight()">-</button>
+							<button style="display:block" ng-click="slideFutureOneDay()">-></button>
+							<button style="display:block" ng-click="addDayAtEnd()">+</button>
+							<button style="display:block" ng-click="removeDayAtEnd()">-</button>
 						</div>
 					</td>
 				</tr>

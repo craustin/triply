@@ -51,13 +51,13 @@ controllers.controller('TripTimelineController', ['$scope', '$routeParams', 'ang
 		}
 
 		$scope.slideBackwardOneDay = function() {
-			$scope.removeDayAtEnd();
 			$scope.addDayAtStart();
+			$scope.removeDayAtEnd();
 		};
 
 		$scope.slideFutureOneDay = function() {
-			$scope.removeDayAtStart();
 			$scope.addDayAtEnd();
+			$scope.removeDayAtStart();
 		};
 
 		var makeDay = function(date) {

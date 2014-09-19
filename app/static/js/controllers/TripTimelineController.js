@@ -32,11 +32,14 @@ controllers.controller('TripTimelineController', ['$scope', '$routeParams', 'ang
 		$scope.addDayAtStart = function() {
 			var newDay = makeDay();
 			$scope.days.unshift(newDay);
+			$scope.startDate = addOffsetToDate($scope.startDate, -1);
 		}
 
 		$scope.removeDayAtStart = function() {
 			if ($scope.days.length > 1)
 				$scope.days.shift();
+				// TODO: add deleted day's activities to general pool
+			$scope.startDate = addOffsetToDate($scope.startDate, 1);
 		}
 
 		$scope.addDayAtEnd = function() {
@@ -47,6 +50,7 @@ controllers.controller('TripTimelineController', ['$scope', '$routeParams', 'ang
 		$scope.removeDayAtEnd = function() {
 			if ($scope.days.length > 1)
 				$scope.days.pop();
+				// TODO: add deleted day's activities to general pool
 		}
 
 		$scope.slideBackwardOneDay = function() {

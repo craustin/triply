@@ -23,31 +23,30 @@ controllers.controller('TripTimelineController', ['$scope', '$routeParams', 'ang
 			return monthNames[monthIndex];
 		}
 
-		var getNewDateOffsetInDaysFromDate = function(date, offset) {
+		var addOffsetToDate = function(date, offset) {
 			var newDate = new Date(date);
 			newDate.setDate(date.getDate()+offset);
 			return newDate;
 		}
 
-		var dayAfter = function(date) { return getNewDateOffsetInDaysFromDate(date, 1); };
-		var dayBefore = function(date) { return getNewDateOffsetInDaysFromDate(date, -1); };
-
 		$scope.addDayAtStart = function() {
-			var newDay = makeDay(dayBefore($scope.days[0].date));
+			var newDay = makeDay();
 			$scope.days.unshift(newDay);
 		}
 
 		$scope.removeDayAtStart = function() {
-			$scope.days.shift();
+			if ($scope.days.length > 1)
+				$scope.days.shift();
 		}
 
 		$scope.addDayAtEnd = function() {
-			var newDay = makeDay(dayAfter($scope.days[$scope.days.length-1].date));
+			var newDay = makeDay();
 			$scope.days.push(newDay);
 		}
 
 		$scope.removeDayAtEnd = function() {
-			$scope.days.pop();
+			if ($scope.days.length > 1)
+				$scope.days.pop();
 		}
 
 		$scope.slideBackwardOneDay = function() {
@@ -55,19 +54,38 @@ controllers.controller('TripTimelineController', ['$scope', '$routeParams', 'ang
 			$scope.removeDayAtEnd();
 		};
 
-		$scope.slideFutureOneDay = function() {
+		$scope.slideForwardOneDay = function() {
 			$scope.addDayAtEnd();
 			$scope.removeDayAtStart();
 		};
 
-		var makeDay = function(date) {
-			var title = getDayName(date) + ', ' + getMonthName(date) + ' ' + date.toJSON().slice(8,10);
-			var activities = ['thing1','thing2'];
-			return {date:date, title:title, activities:activities};
+		$scope.dateToString = function(date) {
+			return getDayName(date) + ', ' + getMonthName(date) + ' ' + date.toJSON().slice(8,10);
+		}
+
+		$scope.getDayTitle = function(index) {
+			var title = '';
+			if ($scope.startDate == null)
+				title = 'Day ' + (index + 1);
+			else
+				title = $scope.dateToString(addOffsetToDate($scope.startDate, index));
+
+			return title;
+		}
+
+		$scope.updateStartingDate = function() {
+			alert('TODO: be able to parse text like \'' + $scope.startDateText + '\' into a date');
+			// and then update the starting date
+		}		
+
+		var makeDay = function() {
+			return {activities:[]};
 		};
 
 		var today = new Date();
-		$scope.days = [ makeDay(today) ];
+		$scope.startDate = addOffsetToDate(today, 7);
+		$scope.days = [ makeDay() ];
+		$scope.days[0]['activities'] = ['thing1','thing2'];
 		$scope.addDayAtEnd();
 		$scope.addDayAtEnd();
 	}]);

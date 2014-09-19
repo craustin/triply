@@ -1,4 +1,4 @@
-<!-- ROGTODO: replace nav with lightweight, righ-aligned nav controls (like google.com) -->
+<!-- ROGTODO: replace nav with lightweight, righ-aligned nav controls (like on google.com) -->
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span10">
@@ -8,7 +8,9 @@
 					<a href editable-text="tripName">{{ tripName || "Trip Name" }}</a>
 				</strong>
 			</div>
-			Trip dates: {{days[0].title}} to {{days[days.length-1].title}}
+			Start date: <a href editable-date="startDateText" onaftersave="updateStartingDate()">{{ getDayTitle(0) || "Please enter a start date" }}</a>
+			<br>
+			Trip dates: {{ getDayTitle(0) }} to {{ getDayTitle(days.length-1) }}
 			<table style="margin: auto;">
 				<!-- ROGTODO: instead of a table, use a div with container-fluid or row-fluid class? -->
 				<tr>
@@ -22,7 +24,7 @@
 					<td>
 						<table border="1">
 							<tr>
-								<td style="width:200px;text-align:center" ng-repeat="day in days">{{ day.title }}</td>
+								<td style="width:200px;text-align:center" ng-repeat="day in days">{{ getDayTitle($index) }}</td>
 							</tr>
 							<tr>
 								<td style="width:200px;height:200px" ng-repeat="day in days">
@@ -33,7 +35,7 @@
 					</td>
 					<td>
 						<div>
-							<button style="display:block" ng-click="slideFutureOneDay()">-></button>
+							<button style="display:block" ng-click="slideForwardOneDay()">-></button>
 							<button style="display:block" ng-click="addDayAtEnd()">+</button>
 							<button style="display:block" ng-click="removeDayAtEnd()">-</button>
 						</div>

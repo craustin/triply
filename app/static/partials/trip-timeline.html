@@ -8,40 +8,62 @@
 					<a href editable-text="tripName">{{ tripName || "Trip Name" }}</a>
 				</strong>
 			</div>
-			Start date: <a href editable-date="startDateText" onaftersave="updateStartingDate()">{{ getDayTitle(0) || "Please enter a start date" }}</a>
-			<br>
-			Trip dates: {{ getDayTitle(0) }} to {{ getDayTitle(days.length-1) }}
+
+			<!-- ROGTODO: start and end dates should be editable all at once, with a calendar control -->
+			Trip dates: 
+				<a href editable-date="startDateText" onaftersave="updateStartDate()">{{ getDayTitle(0) || "Please enter a start date" }}</a>
+				 to {{ getDayTitle(days.length-1) }}
+
 			<table style="margin: auto;">
 				<!-- ROGTODO: instead of a table, use a div with container-fluid or row-fluid class? -->
 				<tr>
 					<td>
-						<div>
-							<button style="display:block" ng-click="slideBackwardOneDay()"><-</button>
-							<button style="display:block" ng-click="addDayAtStart()">+</button>
-							<button style="display:block" ng-click="removeDayAtStart()">-</button>
-						</div>
-					</td>
-					<td>
 						<table border="1">
 							<tr>
+								<td>
+									<button ng-click="slideBackwardOneDay()"><-</button>
+									<button ng-click="addDayAtStart()">+</button>
+									<button ng-click="removeDayAtStart()">-</button>
+								</td>
 								<td style="width:200px;text-align:center" ng-repeat="day in days">{{ getDayTitle($index) }}</td>
+								<td>
+									<button ng-click="removeDayAtEnd()">-</button>
+									<button ng-click="addDayAtEnd()">+</button>
+									<button ng-click="slideForwardOneDay()">-></button>
+								</td>
 							</tr>
 							<tr>
+								<td style="width:200px;text-align:center">Lodging</td>
+								<td style="width:200px;text-align:center" ng-repeat="day in days">{{ day.lodging }}</td>
+							</tr>
+							<tr>
+								<td style="width:200px;text-align:center">Activities</td>
 								<td style="width:200px;height:200px" ng-repeat="day in days">
 									<div ng-repeat="activity in day.activities">{{activity}}</div>
+									<form name="form" novalidate ng-submit="addActivity($index, newActivity)">
+										<table>
+											<tr>
+												<td>
+													<input type="text" style="width:100px" ng-model="newActivity" required placeholder="new activity asdf" />
+												</td>
+												<td>
+													<input type="submit" class="btn btn-primary" value="Add" ng-disabled="form.$invalid || !form.$dirty" />
+												</td>
+											</tr>
+										</table>
+									</form>
 								</td>
 							</tr>
 						</table>
 					</td>
-					<td>
-						<div>
-							<button style="display:block" ng-click="slideForwardOneDay()">-></button>
-							<button style="display:block" ng-click="addDayAtEnd()">+</button>
-							<button style="display:block" ng-click="removeDayAtEnd()">-</button>
-						</div>
-					</td>
 				</tr>
 			</table>
+
+			<br>
+			<strong>Unplaced Ideas</strong>
+			<div class="well" style="position:relative">
+				<span ng-repeat="idea in ideas">{{idea}}, </span>
+			</div>
 		</div>
 	</div>
 </div>

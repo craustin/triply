@@ -33,11 +33,25 @@
 								</td>
 							</tr>
 							<tr>
-								<td style="width:200px;text-align:center">Lodging</td>
-								<td style="width:200px;text-align:center" ng-repeat="day in days">{{ day.lodging }}</td>
+								<td style="width:200px;text-align:center">Hotels</td>
+								<td style="width:200px;text-align:center" ng-repeat="day in days">
+									{{ day.hotel }}
+									<form name="form" novalidate ng-submit="addHotel($index, newHotel)">
+										<table>
+											<tr>
+												<td>
+													<input type="text" style="width:100px" ng-model="newHotel" required placeholder="Grand Budapest Hotel"/>
+												</td>
+												<td>
+													<input type="submit" class="btn btn-primary" value="Add" ng-disabled="form.$invalid || !form.$dirty" />
+												</td>
+											</tr>
+										</table>
+									</form>
+								</td>
 							</tr>
 							<tr>
-								<td style="width:200px;text-align:center">Activities</td>
+								<td style="width:200px;text-align:center">Things To Do</td>
 								<td style="width:200px;height:200px" ng-repeat="day in days">
 									<div ng-repeat="activity in day.activities">{{activity}}</div>
 									<form name="form" novalidate ng-submit="addActivity($index, newActivity)">
@@ -62,8 +76,31 @@
 			<br>
 			<strong>Unplaced Ideas</strong>
 			<div class="well" style="position:relative">
-				<span ng-repeat="idea in ideas">{{idea}}, </span>
+				<span ng-repeat="idea in ideas">{{ ($first ? '' : ', ') + idea }}</span>
+				<form name="form" novalidate ng-submit="addIdea(newIdea)">
+					<table>
+						<tr>
+							<td>
+								<input type="text" style="width:100px" ng-model="newIdea" required placeholder="" />
+							</td>
+							<td>
+								<input type="submit" class="btn btn-primary" value="Add" ng-disabled="form.$invalid || !form.$dirty" />
+							</td>
+						</tr>
+					</table>
+				</form>
 			</div>
+
+			<strong>Activity log</strong>
+			<table>
+				<tr ng-repeat="edit in edits">
+					<td>
+						<small>{{dateTimeToIntuitiveShortString(edit.time)}}</small>
+					</td>
+					<td>
+						{{ edit.user + ' ' + edit.action}}
+					</td>
+			</table>
 		</div>
 	</div>
 </div>

@@ -135,19 +135,41 @@ controllers.controller('TripTimelineController', ['$scope', '$routeParams', 'ang
 		}
 
 		var makeDay = function() {
-			return { activities:[], lodging:'' };
+			return { activities:[], hotel:'' };
 		};
+
+		$scope.addHotel = function(dayIndex, hotel) {
+			$scope.days[dayIndex]['hotel'] = hotel;
+			addToEditHistory('added ' + hotel);
+		}
 
 		$scope.addActivity = function(dayIndex, activity) {
 			$scope.days[dayIndex]['activities'].push(activity);
+		}
+
+		$scope.addIdea = function(idea) {
+			$scope.ideas.push(idea);
+		}
+
+		$scope.dateTimeToIntuitiveShortString = function(dateTime) {
+			var now = new Date();
+			var diff = now.getTime() - dateTime.getTime();
+			if (now.getDate() == dateTime.getDate())
+				return 'Today';
+			return diff;
+		}
+
+		var addToEditHistory = function(action) {
+			var newEdit = { time:new Date(), action:action, user:'You' };
+			$scope.edits.unshift(newEdit);
 		}
 
 		var today = new Date();
 		$scope.startDate = addOffsetToDate(today, 7);
 		$scope.days = [ makeDay() ];
 		$scope.days[0]['activities'] = ['thing1','thing2'];
-		$scope.days[0]['lodging'] = 'Grand Budapest Hotel';
 		$scope.ideas = [];
+		$scope.edits = [];
 		$scope.addDayAtEnd();
 		$scope.addDayAtEnd();
 	}]);

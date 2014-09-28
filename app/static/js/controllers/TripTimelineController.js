@@ -88,6 +88,18 @@ controllers.controller('TripTimelineController', ['$scope', '$routeParams', 'ang
 			return title;
 		}
 
+		var dateDiffInDays = function (a, b) {
+			// Discard the time and time-zone information.
+			// source: http://stackoverflow.com/questions/3224834/get-difference-between-2-dates-in-javascript
+			var utc_a = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+			var utc_b = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+
+			var diff_in_milliseconds = utc_a - utc_b;
+			var MS_PER_DAY = 1000 * 60 * 60 * 24;
+
+			return Math.round(diff_in_milliseconds / MS_PER_DAY);
+		}
+
 		// ROGTODO: we should probably update both the start and end date at once -- requiring the user to change them both,
 		// so that the trip doesn't all of a sudden become super long
 		// or... hmm, when you slide by a day do you want the activities that are placed to slide too, so that what you were
@@ -104,21 +116,10 @@ controllers.controller('TripTimelineController', ['$scope', '$routeParams', 'ang
 				return new Date(year, month-1, day);
 			}
 
-			// source: http://stackoverflow.com/questions/3224834/get-difference-between-2-dates-in-javascript
-			var dateDiffInDays = function (a, b) {
-				var _MS_PER_DAY = 1000 * 60 * 60 * 24;
-
-				// Discard the time and time-zone information.
-				var utc_a = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
-				var utc_b = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
-
-				return Math.floor((utc_b - utc_a) / _MS_PER_DAY);
-			}
-
 			var oldStartDate = $scope.startDate;
 			var newStartDate = getDateFromYYYY_MM_DD($scope.startDateText);
 
-			startDateDiffInDays = dateDiffInDays(oldStartDate, newStartDate);
+			startDateDiffInDays = dateDiffInDays(newStartDate, oldStartDate);
 
 			if (Math.abs(startDateDiffInDays) < $scope.days.length)
 			{
@@ -152,11 +153,39 @@ controllers.controller('TripTimelineController', ['$scope', '$routeParams', 'ang
 		}
 
 		$scope.dateTimeToIntuitiveShortString = function(dateTime) {
+			// http://www.w3schools.com/jsref/jsref_utc.asp
+			// http://stackoverflow.com/questions/948532/how-do-you-convert-a-javascript-date-to-utc
+			// http://stackoverflow.com/questions/10857272/javascript-getting-current-date-in-milliseconds-utc-no-use-of-strings
+
 			var now = new Date();
-			var diff = now.getTime() - dateTime.getTime();
-			if (now.getDate() == dateTime.getDate())
-				return 'Today';
-			return diff;
+
+			var diff_in_seconds = Math.round((now - dateTime) / 1000);
+
+			if (diff_in_seconds < 0)
+				return (-1*diff_in_seconds) + 'seconds in the future';
+
+			if (diff_in_seconds < 2)
+				return 'just now';
+
+			var diff_in_minutes = Math.round(diff_in_seconds / 60);
+
+			if (diff_in_minutes < 2)
+				return diff_in_seconds + ' seconds ago';
+
+
+			if (diff_in_minutes < 60)
+				return diff_in_minutes + ' minutes ago';
+
+			var diff_in_days = dateDiffInDays(now, dateTime);
+
+			if (diff_in_days < 1)
+				dateTime.getHours() + ':' + dateTime.getMinutes();
+
+			if (dayDiff == 1)
+				return 'Yesterday';
+
+			// ROGTODO: format this nicely
+			return dateTime.getDate();
 		}
 
 		var addToEditHistory = function(action) {

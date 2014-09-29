@@ -133,34 +133,46 @@ controllers.controller('TripTimelineController', ['$scope', '$routeParams', 'ang
 			}
 			else
 				alert('ROGTODO: handle larger day shifts!');
+
+			// ROGTODO: also display a message when updating the dates directly uisng the timeline buttons
+			addDateChangeToEditHistory();
 		}
 
 		var makeDay = function() {
 			return { activities:[], hotel:'' };
 		};
 
-		var addToEditHistory = function(idea, dayIndex) {
+		var addDateChangeToEditHistory = function() {
+			var actionMessage = 'changed the trip dates to ' + $scope.getDayTitle(0) + ' to ' + $scope.getDayTitle($scope.days.length-1);
+			addToEditHistory(actionMessage);
+		}
+
+		var addIdeaToEditHistory = function(idea, dayIndex) {
 			var actionMessage = 'added ' + idea;
 			if (dayIndex != null)
 				actionMessage += ' for ' + $scope.getDayTitle(dayIndex);
 
+			addToEditHistory(actionMessage);
+		}
+
+		var addToEditHistory = function(actionMessage) {
 			var newEdit = { time:new Date(), action:actionMessage, user:'You' };
 			$scope.edits.unshift(newEdit);
 		}
 
 		$scope.addHotel = function(dayIndex, hotel) {
 			$scope.days[dayIndex]['hotel'] = hotel;
-			addToEditHistory(hotel, dayIndex);
+			addIdeaToEditHistory(hotel, dayIndex);
 		}
 
 		$scope.addActivity = function(dayIndex, activity) {
 			$scope.days[dayIndex]['activities'].push(activity);
-			addToEditHistory(activity, dayIndex);
+			addIdeaToEditHistory(activity, dayIndex);
 		}
 
 		$scope.addIdea = function(idea) {
 			$scope.ideas.push(idea);
-			addToEditHistory(idea);
+			addIdeaToEditHistory(idea);
 		}
 
 		$scope.dateTimeToIntuitiveShortString = function(dateTime) {
@@ -205,8 +217,8 @@ controllers.controller('TripTimelineController', ['$scope', '$routeParams', 'ang
 		$scope.days[0]['activities'] = ['thing1','thing2'];
 		$scope.ideas = [];
 		$scope.edits = [];
-		$scope.addDayAtEnd();
-		$scope.addDayAtEnd();
+		$scope.days.push(makeDay());
+		$scope.days.push(makeDay());
 	}]);
 
 controllers.controller('NewTripTimelineController', ['$scope', '$location',

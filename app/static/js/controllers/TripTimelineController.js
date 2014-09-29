@@ -139,17 +139,28 @@ controllers.controller('TripTimelineController', ['$scope', '$routeParams', 'ang
 			return { activities:[], hotel:'' };
 		};
 
+		var addToEditHistory = function(idea, dayIndex) {
+			var actionMessage = 'added ' + idea;
+			if (dayIndex != null)
+				actionMessage += ' for ' + $scope.getDayTitle(dayIndex);
+
+			var newEdit = { time:new Date(), action:actionMessage, user:'You' };
+			$scope.edits.unshift(newEdit);
+		}
+
 		$scope.addHotel = function(dayIndex, hotel) {
 			$scope.days[dayIndex]['hotel'] = hotel;
-			addToEditHistory('added ' + hotel);
+			addToEditHistory(hotel, dayIndex);
 		}
 
 		$scope.addActivity = function(dayIndex, activity) {
 			$scope.days[dayIndex]['activities'].push(activity);
+			addToEditHistory(activity, dayIndex);
 		}
 
 		$scope.addIdea = function(idea) {
 			$scope.ideas.push(idea);
+			addToEditHistory(idea);
 		}
 
 		$scope.dateTimeToIntuitiveShortString = function(dateTime) {
@@ -164,13 +175,13 @@ controllers.controller('TripTimelineController', ['$scope', '$routeParams', 'ang
 			if (diff_in_seconds < 0)
 				return (-1*diff_in_seconds) + 'seconds in the future';
 
-			if (diff_in_seconds < 2)
+			if (diff_in_seconds < 30)
 				return 'just now';
 
 			var diff_in_minutes = Math.round(diff_in_seconds / 60);
 
 			if (diff_in_minutes < 2)
-				return diff_in_seconds + ' seconds ago';
+				return 'a minute ago';
 
 
 			if (diff_in_minutes < 60)
@@ -186,11 +197,6 @@ controllers.controller('TripTimelineController', ['$scope', '$routeParams', 'ang
 
 			// ROGTODO: format this nicely
 			return dateTime.getDate();
-		}
-
-		var addToEditHistory = function(action) {
-			var newEdit = { time:new Date(), action:action, user:'You' };
-			$scope.edits.unshift(newEdit);
 		}
 
 		var today = new Date();
